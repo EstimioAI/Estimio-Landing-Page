@@ -944,7 +944,7 @@ a {
 
     /* Mobile Layout Adjustments */
     .hero {
-        padding-top: 150px;
+        padding-top: 180px;
         /* Increase spacing between Navbar and "Contractors..." */
     }
 
@@ -1186,7 +1186,7 @@ a {
     }
 
     .hero {
-        padding-top: 70px;
+        padding-top: 90px;
     }
 
     .hero-container {
