@@ -1,0 +1,118 @@
+/* ==========================================================================
+   Estimio Legal Pages Styles
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary: #007AFF;
+    --text-primary: #3D3D3D;
+    --text-secondary: rgba(61, 61, 61, 0.6);
+    --bg-white: #FFFFFF;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background-color: var(--bg-white);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 30px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.last-updated {
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 16px;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+p {
+    margin-bottom: 16px;
+}
+
+ul {
+    margin-bottom: 16px;
+    padding-left: 24px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+a {
+    color: var(--primary);
+}
+
+.highlight-box {
+    background: #FFF3CD;
+    border-left: 4px solid #FFC107;
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+}
+
+.contact-info {
+    background: #F5F5F5;
+    padding: 20px 24px;
+    border-radius: 12px;
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}

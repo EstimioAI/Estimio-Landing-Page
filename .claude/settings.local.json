@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx serve . -p 3000)",
+      "Skill(frontend-design)",
+      "Skill(frontend-design:*)"
+    ]
+  }
+}
