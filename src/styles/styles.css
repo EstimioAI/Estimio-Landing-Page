@@ -941,6 +941,24 @@ a {
         background: linear-gradient(135deg, #007AFF 0%, #5AC8FA 100%);
         background-size: cover;
     }
+
+    /* Mobile Layout Adjustments */
+    .hero {
+        padding-top: 150px;
+        /* Increase spacing between Navbar and "Contractors..." */
+    }
+
+    .hero-container {
+        padding-bottom: 0;
+        /* Reduce gap between Download Button and Phone */
+    }
+
+    .hero-phones {
+        padding-top: 40px;
+        /* Space for upward shadow */
+        margin-top: 10px;
+        /* Pull back up to maintain tight spacing */
+    }
 }
 
 @keyframes shimmer {
@@ -1204,8 +1222,10 @@ a {
     }
 
     /* Hero phones wrapper - same proportions as desktop */
+    /* Hero phones wrapper - same proportions as desktop */
     .hero-phones-wrapper {
-        min-height: 450px;
+        min-height: auto;
+        align-items: flex-start;
     }
 
     .hero-phones {
@@ -1219,9 +1239,9 @@ a {
 
     /* Phone size proportional to viewport - larger on mobile */
     .hero-phone-center {
-        width: 65%;
-        min-width: 260px;
-        max-width: 380px;
+        width: 55%;
+        min-width: 220px;
+        max-width: 320px;
     }
 
     .hero-phone-center img {
