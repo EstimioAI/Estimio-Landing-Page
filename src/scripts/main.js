@@ -17,6 +17,25 @@ document.addEventListener('DOMContentLoaded', function () {
   let lastScrollY = 0;
   let ticking = false;
 
+  // Cache section positions to avoid layout thrashing
+  let sectionPositions = [];
+
+  function cacheSectionPositions() {
+    sectionPositions = Array.from(sections).map(section => ({
+      id: section.getAttribute('id'),
+      top: section.offsetTop - 120,
+      bottom: section.offsetTop + section.offsetHeight - 120
+    }));
+  }
+
+  // Initial cache
+  cacheSectionPositions();
+
+  // Update cache on resize
+  window.addEventListener('resize', () => {
+    cacheSectionPositions();
+  });
+
   function updateNavOnScroll() {
     const scrollY = window.scrollY;
 
@@ -29,13 +48,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Update active section
     let currentSection = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
-      const sectionHeight = section.offsetHeight;
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        currentSection = section.getAttribute('id');
+
+    // Find current section from cached positions
+    for (const section of sectionPositions) {
+      if (scrollY >= section.top && scrollY < section.bottom) {
+        currentSection = section.id;
+        break;
       }
-    });
+    }
 
     // Update active link
     navLinks.forEach(link => {
@@ -54,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
       window.requestAnimationFrame(updateNavOnScroll);
       ticking = true;
     }
-  });
+  }, { passive: true });
 
   // Mobile menu toggle
   if (navHamburger && navMobileMenu) {

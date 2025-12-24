@@ -935,6 +935,14 @@ a {
     overflow: hidden;
 }
 
+@media (max-width: 768px) {
+    .footer-cta-container {
+        animation: none;
+        background: linear-gradient(135deg, #007AFF 0%, #5AC8FA 100%);
+        background-size: cover;
+    }
+}
+
 @keyframes shimmer {
     0% {
         background-position: 0% 50%;
