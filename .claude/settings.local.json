@@ -3,7 +3,14 @@
     "allow": [
       "Bash(npx serve . -p 3000)",
       "Skill(frontend-design)",
-      "Skill(frontend-design:*)"
+      "Skill(frontend-design:*)",
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "Bash(npx astro add tailwind -y)",
+      "Bash(echo:*)",
+      "Bash(npm run build:*)",
+      "Bash(ls -la \"c:\\\\Estimio-Landing-Page-1\\\\public\\\\assets\\\\screenshots\"\" 2>&1 || echo \"Screenshots folder doesn 't exist \")",
+      "Bash(ls:*)"
     ]
   }
 }

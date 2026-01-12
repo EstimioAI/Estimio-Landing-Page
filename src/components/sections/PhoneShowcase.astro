@@ -1,0 +1,97 @@
+---
+import MetricCard from '../ui/MetricCard.astro';
+
+const metricsLeft = [
+  { value: '25', prefix: '+', suffix: ' hrs', label: 'Saved Monthly', floatClass: 'float-1', icon: 'clock' },
+  { value: '30', prefix: '+', suffix: '%', label: 'More Jobs Closed', floatClass: 'float-3', icon: 'chart' },
+];
+
+const metricsRight = [
+  { value: '20', prefix: '+$', suffix: 'K', label: 'More Earned Monthly', floatClass: 'float-2', icon: 'dollar' },
+  { value: '80', prefix: '+$', suffix: 'K', label: 'In Annual Profits', floatClass: 'float-4', icon: 'trending' },
+];
+---
+
+<section class="relative py-16 md:py-24 lg:py-32 overflow-hidden">
+  <!-- Background with gradient fade -->
+  <div class="absolute inset-0 bg-gradient-to-b from-primary-subtle/40 via-primary-subtle/20 to-white"></div>
+  <div class="absolute inset-0 grid-pattern opacity-50"></div>
+
+  <div class="relative section-container">
+    <!-- Desktop Layout: Phone in center with floating metrics -->
+    <div class="hidden lg:block">
+      <div class="relative flex items-center justify-center min-h-[650px]">
+        <!-- Left Metrics -->
+        <div class="absolute left-[5%] xl:left-[10%] flex flex-col gap-8 z-10">
+          {metricsLeft.map((metric, index) => (
+            <MetricCard {...metric} class="gsap-fade-up" style={`--delay: ${index * 0.1}s`} />
+          ))}
+        </div>
+
+        <!-- Phone Image with glow effect -->
+        <div class="relative z-0">
+          <div class="absolute inset-0 bg-primary/20 blur-[100px] scale-75 translate-y-10"></div>
+          <img
+            id="hero-phone"
+            src="/assets/screenshots/Hero Image Middle.png"
+            alt="Estimio app showing a master bathroom renovation estimate"
+            class="relative w-[320px] xl:w-[360px] drop-shadow-2xl gsap-scale-in"
+            width="360"
+            height="740"
+          />
+        </div>
+
+        <!-- Right Metrics -->
+        <div class="absolute right-[5%] xl:right-[10%] flex flex-col gap-8 z-10">
+          {metricsRight.map((metric, index) => (
+            <MetricCard {...metric} class="gsap-fade-up" style={`--delay: ${(index + 2) * 0.1}s`} />
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Tablet Layout: Phone on left, metrics on right -->
+    <div class="hidden md:flex lg:hidden items-center gap-8">
+      <!-- Phone -->
+      <div class="relative flex-shrink-0">
+        <div class="absolute inset-0 bg-primary/20 blur-[80px] scale-75 translate-y-10"></div>
+        <img
+          src="/assets/screenshots/Hero Image Middle.png"
+          alt="Estimio app showing a master bathroom renovation estimate"
+          class="relative w-[280px] drop-shadow-2xl gsap-scale-in"
+          width="280"
+          height="574"
+        />
+      </div>
+
+      <!-- Metrics Grid -->
+      <div class="grid grid-cols-2 gap-4 flex-1">
+        {[...metricsLeft, ...metricsRight].map((metric, index) => (
+          <MetricCard {...metric} floatClass="" class="gsap-fade-up" />
+        ))}
+      </div>
+    </div>
+
+    <!-- Mobile Layout: Phone on top, metrics below in 2x2 grid -->
+    <div class="md:hidden">
+      <!-- Phone centered -->
+      <div class="relative flex justify-center mb-10">
+        <div class="absolute inset-0 bg-primary/15 blur-[60px] scale-50"></div>
+        <img
+          src="/assets/screenshots/Hero Image Middle.png"
+          alt="Estimio app showing a master bathroom renovation estimate"
+          class="relative w-[260px] drop-shadow-xl gsap-scale-in"
+          width="260"
+          height="533"
+        />
+      </div>
+
+      <!-- Metrics in 2x2 grid -->
+      <div class="grid grid-cols-2 gap-3 px-2">
+        {[...metricsLeft, ...metricsRight].map((metric, index) => (
+          <MetricCard {...metric} floatClass="" class="gsap-fade-up" compact />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
