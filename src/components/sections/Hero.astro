@@ -1,0 +1,180 @@
+---
+import MetricCard from "../ui/MetricCard.astro";
+
+const appStoreUrl =
+  "https://apps.apple.com/us/app/estimio-ai-estimates/id6746227498";
+
+const metricsLeft = [
+  {
+    value: "25",
+    prefix: "+",
+    suffix: " hrs",
+    label: "Saved Monthly",
+    floatClass: "float-1",
+  },
+  {
+    value: "30",
+    prefix: "+",
+    suffix: "%",
+    label: "More Jobs Closed",
+    floatClass: "float-3",
+  },
+];
+
+const metricsRight = [
+  {
+    value: "20",
+    prefix: "+$",
+    suffix: "K",
+    label: "More Earned Monthly",
+    floatClass: "float-2",
+  },
+  {
+    value: "80",
+    prefix: "+$",
+    suffix: "K",
+    label: "In Annual Profits",
+    floatClass: "float-4",
+  },
+];
+---
+
+<section class="relative">
+  <!-- Background: White to blue gradient with grid -->
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-white via-[#E8F4FF] to-[#C5DFFF]"
+  >
+  </div>
+  <div class="absolute inset-0 grid-pattern"></div>
+
+  <div class="relative section-container pt-32 pb-20 md:pt-44 md:pb-32">
+    <!-- Audience Pill -->
+    <div class="text-center">
+      <div
+        class="gsap-fade-up inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white border border-separator shadow-sm mb-8 md:mb-10"
+      >
+        <span class="text-text-primary font-medium text-sm">Contractors</span>
+        <span class="w-1 h-1 rounded-full bg-primary/40"></span>
+        <span class="text-text-primary font-medium text-sm">Handymen</span>
+        <span class="w-1 h-1 rounded-full bg-primary/40"></span>
+        <span class="text-text-primary font-medium text-sm">Remodelers</span>
+      </div>
+    </div>
+
+    <!-- Headline -->
+    <h1
+      class="gsap-fade-up text-center text-[2.5rem] md:text-6xl lg:text-7xl xl:text-[5rem] font-semibold text-text-primary tracking-[-0.02em] leading-[1.1] max-w-4xl mx-auto mb-6"
+    >
+      Create Estimates
+      <br />
+      <span class="gradient-text">in Minutes</span> with AI
+    </h1>
+
+    <!-- Subheadline -->
+    <p
+      class="gsap-fade-up text-center text-lg md:text-xl lg:text-2xl text-text-secondary max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed"
+    >
+      Simply describe the job. AI handles the rest.
+    </p>
+
+    <!-- CTA Section -->
+    <div
+      class="gsap-fade-up flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 md:mb-24"
+    >
+      <!-- App Store Badge -->
+      <a
+        href={appStoreUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group inline-block transition-all duration-300 hover:scale-[1.02] hover:shadow-lg rounded-xl"
+        aria-label="Download Estimio on the App Store"
+      >
+        <img
+          src="/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
+          alt="Download on the App Store"
+          class="h-14 md:h-16"
+          width="200"
+          height="60"
+        />
+      </a>
+
+      <!-- Secondary CTA -->
+      <a
+        href="#how-it-works"
+        class="btn btn-secondary px-6 py-3.5 text-sm md:text-base"
+      >
+        See How It Works
+        <svg
+          class="w-4 h-4 ml-2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Phone Showcase with floating metrics -->
+    <!-- Phone Showcase with floating metrics -->
+    <div class="relative z-10 mx-auto w-max">
+      <!-- Left Metrics -->
+      <!-- Positioned relative to the central phone container -->
+      <!-- On larger screens, pushed out by padding. On smaller screens, they overlap (z-20) -->
+      <div
+        class="absolute right-[85%] md:right-full top-1/2 -translate-y-1/2 flex flex-col gap-6 md:gap-8 z-20 pr-4 lg:pr-12 pointer-events-none w-max"
+      >
+        {
+          metricsLeft.map((metric, index) => (
+            <div class="pointer-events-auto">
+              <MetricCard
+                {...metric}
+                class="gsap-fade-up !bg-white/70 !backdrop-blur-xl !border-white/50 shadow-xl"
+                compact
+                style={`--delay: ${index * 0.1}s`}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Phone Image Wrapper -->
+      <div class="relative z-10">
+        <div
+          class="absolute inset-0 bg-primary/10 blur-[100px] scale-75 translate-y-10"
+        >
+        </div>
+        <img
+          id="hero-phone"
+          src="/assets/screenshots/Hero Image Middle.png"
+          alt="Estimio app showing a master bathroom renovation estimate"
+          class="relative w-[200px] sm:w-[240px] md:w-[300px] lg:w-[340px] xl:w-[380px] drop-shadow-2xl gsap-scale-in"
+          width="360"
+          height="740"
+        />
+      </div>
+
+      <!-- Right Metrics -->
+      <div
+        class="absolute left-[85%] md:left-full top-1/2 -translate-y-1/2 flex flex-col gap-6 md:gap-8 z-20 pl-4 lg:pl-12 pointer-events-none w-max"
+      >
+        {
+          metricsRight.map((metric, index) => (
+            <div class="pointer-events-auto">
+              <MetricCard
+                {...metric}
+                class="gsap-fade-up !bg-white/70 !backdrop-blur-xl !border-white/50 shadow-xl"
+                compact
+                style={`--delay: ${(index + 2) * 0.1}s`}
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

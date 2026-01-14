@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Layout title="Privacy Policy - Estimio">
+  <Nav />
+
+  <main class="pt-32 pb-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="text-4xl font-semibold text-text-primary mb-8">Privacy Policy</h1>
+
+      <div class="prose prose-gray max-w-none">
+        <p class="text-text-secondary mb-6">Last updated: January 2025</p>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-text-primary mb-4">Introduction</h2>
+          <p class="text-text-secondary leading-relaxed">
+            Estimio ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-text-primary mb-4">Information We Collect</h2>
+          <p class="text-text-secondary leading-relaxed mb-4">
+            We collect information that you provide directly to us, including:
+          </p>
+          <ul class="list-disc list-inside text-text-secondary space-y-2">
+            <li>Account information (email, name)</li>
+            <li>Project data and estimates you create</li>
+            <li>Photos you upload for estimates</li>
+            <li>Usage data and analytics</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-text-primary mb-4">How We Use Your Information</h2>
+          <p class="text-text-secondary leading-relaxed">
+            We use the information we collect to provide, maintain, and improve our services, process your requests, and communicate with you about updates and new features.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-text-primary mb-4">Contact Us</h2>
+          <p class="text-text-secondary leading-relaxed">
+            If you have questions about this Privacy Policy, please contact us at
+            <a href="mailto:support@estimio.ai" class="text-primary hover:underline">support@estimio.ai</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import Features from '../components/sections/Features.astro';
+import FooterCTA from '../components/sections/FooterCTA.astro';
+---
+
+<Layout title="Estimio - Create Estimates in Minutes with AI">
+  <Nav />
+
+  <main id="main-content">
+    <Hero />
+    <HowItWorks />
+    <Features />
+    <FooterCTA />
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import { initLenis, initAnimations, initHeroAnimation, initImageReveal, cleanup } from '../lib/animations';
+
+  // Initialize on DOM ready
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Lenis smooth scroll
+    const lenis = initLenis();
+
+    // Hero entrance animation (runs first)
+    initHeroAnimation();
+
+    // Initialize scroll-triggered animations
+    initAnimations();
+
+    // Initialize image reveal animations
+    initImageReveal();
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      cleanup();
+      lenis?.destroy();
+    });
+  });
+</script>
