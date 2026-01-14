@@ -2,53 +2,69 @@
 const navLinks = [
   { href: "#how-it-works", label: "How it Works" },
   { href: "#features", label: "Features" },
+  { href: "#testimonials", label: "Reviews" },
+  { href: "#faq", label: "FAQ" },
 ];
 
-const appStoreUrl = "https://apps.apple.com/us/app/estimio-ai-estimates/id6746227498";
+const appStoreUrl =
+  "https://apps.apple.com/us/app/estimio-ai-estimates/id6746227498";
 ---
 
 <header>
-  <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-4" aria-label="Main navigation">
+  <nav
+    id="nav"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-4"
+    aria-label="Main navigation"
+  >
     <div class="section-container">
-      <div class="nav-container glass rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-300">
+      <div
+        class="nav-container glass rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-300"
+      >
         <!-- Logo -->
-        <a href="/" class="flex items-center gap-2.5 group" aria-label="Estimio - Home">
-          <div class="w-9 h-9 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="3" y="3" width="7" height="7" rx="1.5" fill="white"/>
-              <rect x="14" y="3" width="7" height="7" rx="1.5" fill="white"/>
-              <rect x="3" y="14" width="7" height="7" rx="1.5" fill="white"/>
-              <rect x="14" y="14" width="7" height="7" rx="1.5" fill="white"/>
-            </svg>
-          </div>
-          <span class="text-xl font-semibold text-text-primary">Estimio</span>
+        <a href="/" class="flex items-center group" aria-label="Estimio - Home">
+          <img
+            src="/assets/screenshots/estimio-logo-text.png"
+            alt="Estimio"
+            class="h-9 w-auto"
+          />
         </a>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <a
-              href={link.href}
-              class="nav-link relative px-4 py-2 text-text-secondary hover:text-text-primary transition-colors duration-200 font-medium rounded-lg hover:bg-black/5"
-            >
-              {link.label}
-            </a>
-          ))}
+          {
+            navLinks.map((link) => (
+              <a
+                href={link.href}
+                class="nav-link relative px-4 py-2 text-text-secondary hover:text-text-primary transition-colors duration-200 font-medium rounded-lg hover:bg-black/5"
+              >
+                {link.label}
+              </a>
+            ))
+          }
         </div>
 
         <!-- CTA Button (Desktop) -->
-        <a
-          href={appStoreUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hidden md:flex items-center gap-2 btn btn-primary px-5 py-2.5 text-sm"
-          aria-label="Download Estimio from the App Store"
-        >
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-          </svg>
-          Download
-        </a>
+        <div class="hidden md:block">
+          <a
+            href={appStoreUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 btn btn-primary px-5 py-2.5 text-sm"
+            aria-label="Download Estimio from the App Store"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+              ></path>
+            </svg>
+            Get the App
+          </a>
+        </div>
 
         <!-- Mobile Menu Button -->
         <button
@@ -59,9 +75,15 @@ const appStoreUrl = "https://apps.apple.com/us/app/estimio-ai-estimates/id674622
           aria-controls="mobile-menu"
         >
           <div class="w-5 h-4 flex flex-col justify-between">
-            <span class="hamburger-line w-full h-0.5 bg-text-primary transition-all duration-300 origin-center"></span>
-            <span class="hamburger-line w-full h-0.5 bg-text-primary transition-all duration-300"></span>
-            <span class="hamburger-line w-full h-0.5 bg-text-primary transition-all duration-300 origin-center"></span>
+            <span
+              class="hamburger-line w-full h-0.5 bg-text-primary transition-all duration-300 origin-center"
+            ></span>
+            <span
+              class="hamburger-line w-full h-0.5 bg-text-primary transition-all duration-300"
+            ></span>
+            <span
+              class="hamburger-line w-full h-0.5 bg-text-primary transition-all duration-300 origin-center"
+            ></span>
           </div>
         </button>
       </div>
@@ -73,14 +95,16 @@ const appStoreUrl = "https://apps.apple.com/us/app/estimio-ai-estimates/id674622
         aria-hidden="true"
       >
         <div class="p-4 flex flex-col gap-1">
-          {navLinks.map((link) => (
-            <a
-              href={link.href}
-              class="mobile-nav-link text-text-primary hover:text-primary px-4 py-3 rounded-xl transition-all duration-200 font-medium hover:bg-primary/5"
-            >
-              {link.label}
-            </a>
-          ))}
+          {
+            navLinks.map((link) => (
+              <a
+                href={link.href}
+                class="mobile-nav-link text-text-primary hover:text-primary px-4 py-3 rounded-xl transition-all duration-200 font-medium hover:bg-primary/5"
+              >
+                {link.label}
+              </a>
+            ))
+          }
           <hr class="my-2 border-separator" />
           <a
             href={appStoreUrl}
@@ -88,8 +112,15 @@ const appStoreUrl = "https://apps.apple.com/us/app/estimio-ai-estimates/id674622
             rel="noopener noreferrer"
             class="flex items-center justify-center gap-2 btn btn-primary px-4 py-3 rounded-xl text-center"
           >
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            <svg
+              class="w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+              ></path>
             </svg>
             Download App
           </a>
@@ -100,71 +131,81 @@ const appStoreUrl = "https://apps.apple.com/us/app/estimio-ai-estimates/id674622
 </header>
 
 <script>
-  const nav = document.getElementById('nav');
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const hamburgerLines = document.querySelectorAll('.hamburger-line');
+  const nav = document.getElementById("nav");
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const hamburgerLines = document.querySelectorAll(".hamburger-line");
 
   // Scroll effect
   let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const scrollY = window.scrollY;
-        if (scrollY > 20) {
-          nav?.classList.add('scrolled');
-        } else {
-          nav?.classList.remove('scrolled');
-        }
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          if (scrollY > 20) {
+            nav?.classList.add("scrolled");
+          } else {
+            nav?.classList.remove("scrolled");
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    },
+    { passive: true },
+  );
 
   // Mobile menu toggle
   function toggleMenu(open: boolean) {
     if (open) {
-      mobileMenu?.classList.remove('opacity-0', 'invisible');
-      mobileMenu?.classList.add('opacity-100', 'visible');
-      mobileMenu?.setAttribute('aria-hidden', 'false');
-      mobileMenuBtn?.setAttribute('aria-expanded', 'true');
-      hamburgerLines[0]?.classList.add('rotate-45', 'translate-y-[7px]');
-      hamburgerLines[1]?.classList.add('opacity-0', 'scale-0');
-      hamburgerLines[2]?.classList.add('-rotate-45', '-translate-y-[7px]');
+      mobileMenu?.classList.remove("opacity-0", "invisible");
+      mobileMenu?.classList.add("opacity-100", "visible");
+      mobileMenu?.setAttribute("aria-hidden", "false");
+      mobileMenuBtn?.setAttribute("aria-expanded", "true");
+      hamburgerLines[0]?.classList.add("rotate-45", "translate-y-[7px]");
+      hamburgerLines[1]?.classList.add("opacity-0", "scale-0");
+      hamburgerLines[2]?.classList.add("-rotate-45", "-translate-y-[7px]");
     } else {
-      mobileMenu?.classList.add('opacity-0', 'invisible');
-      mobileMenu?.classList.remove('opacity-100', 'visible');
-      mobileMenu?.setAttribute('aria-hidden', 'true');
-      mobileMenuBtn?.setAttribute('aria-expanded', 'false');
-      hamburgerLines[0]?.classList.remove('rotate-45', 'translate-y-[7px]');
-      hamburgerLines[1]?.classList.remove('opacity-0', 'scale-0');
-      hamburgerLines[2]?.classList.remove('-rotate-45', '-translate-y-[7px]');
+      mobileMenu?.classList.add("opacity-0", "invisible");
+      mobileMenu?.classList.remove("opacity-100", "visible");
+      mobileMenu?.setAttribute("aria-hidden", "true");
+      mobileMenuBtn?.setAttribute("aria-expanded", "false");
+      hamburgerLines[0]?.classList.remove("rotate-45", "translate-y-[7px]");
+      hamburgerLines[1]?.classList.remove("opacity-0", "scale-0");
+      hamburgerLines[2]?.classList.remove("-rotate-45", "-translate-y-[7px]");
     }
   }
 
-  mobileMenuBtn?.addEventListener('click', () => {
-    const isOpen = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+  mobileMenuBtn?.addEventListener("click", () => {
+    const isOpen = mobileMenuBtn.getAttribute("aria-expanded") === "true";
     toggleMenu(!isOpen);
   });
 
   // Close mobile menu on link click
-  document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => toggleMenu(false));
+  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", () => toggleMenu(false));
   });
 
   // Close on escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenuBtn?.getAttribute('aria-expanded') === 'true') {
+  document.addEventListener("keydown", (e) => {
+    if (
+      e.key === "Escape" &&
+      mobileMenuBtn?.getAttribute("aria-expanded") === "true"
+    ) {
       toggleMenu(false);
       mobileMenuBtn?.focus();
     }
   });
 
   // Close when clicking outside
-  document.addEventListener('click', (e) => {
+  document.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
-    if (!nav?.contains(target) && mobileMenuBtn?.getAttribute('aria-expanded') === 'true') {
+    if (
+      !nav?.contains(target) &&
+      mobileMenuBtn?.getAttribute("aria-expanded") === "true"
+    ) {
       toggleMenu(false);
     }
   });
@@ -177,7 +218,9 @@ const appStoreUrl = "https://apps.apple.com/us/app/estimio-ai-estimates/id674622
   }
 
   #nav.scrolled .nav-container {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.08),
+      0 0 0 1px rgba(0, 0, 0, 0.04);
     background: rgba(255, 255, 255, 0.9);
   }
 
@@ -187,7 +230,7 @@ const appStoreUrl = "https://apps.apple.com/us/app/estimio-ai-estimates/id674622
   }
 
   .nav-link.active::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 4px;
     left: 50%;

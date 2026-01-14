@@ -1,0 +1,80 @@
+---
+const testimonials = [
+  {
+    quote: "Estimio has completely changed how I run my business. I used to spend hours typing up quotes at night. Now I do it in the truck in 2 minutes.",
+    author: "Mike Stevenson",
+    role: "General Contractor",
+    rating: 5,
+    avatar: "MS" // Initials for now, or placeholder
+  },
+  {
+    quote: "The detailed breakdowns are incredible. Clients stop arguing about prices when they see exactly where the money is going. It looks so professional.",
+    author: "Sarah Jenkins",
+    role: "Interior Designer",
+    rating: 5,
+    avatar: "SJ"
+  },
+  {
+    quote: "I was skeptical about AI, but this thing actually knows construction. It gets the materials right 99% of the time. Worth every penny.",
+    author: "David Ross",
+    role: "Remodeling Specialist",
+    rating: 5,
+    avatar: "DR"
+  }
+];
+---
+
+<section id="testimonials" class="py-20 bg-white">
+  <div class="section-container">
+    <div class="text-center mb-16">
+      <div class="gsap-fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        Trusted by Pros
+      </div>
+      <h2 class="gsap-fade-up text-3xl md:text-4xl font-semibold text-text-primary mb-4">
+        Trusted by contractors across the country
+      </h2>
+      <p class="gsap-fade-up text-lg text-text-secondary max-w-2xl mx-auto">
+        Join professionals who are winning more jobs and saving time with Estimio.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {testimonials.map((t, i) => (
+        <div class="gsap-fade-up bg-bg-gray p-8 rounded-3xl relative">
+          <!-- Quote Icon -->
+          <div class="absolute top-8 right-8 text-primary/10">
+            <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21L14.017 18C14.017 16.05 14.321 14.995 14.929 14.835C15.545 14.675 16.637 14.595 18.205 14.595L17.965 7.425C15.176 7.425 13.925 8.165 12.049 11.649L7.425 21L7.425 18C7.425 16.05 7.729 14.995 8.337 14.835C8.953 14.675 10.045 14.595 11.613 14.595L11.373 7.425C8.584 7.425 7.333 8.165 5.457 11.649L0.517 21H14.017Z" />
+            </svg>
+          </div>
+          
+          <!-- Stars -->
+          <div class="flex gap-1 text-yellow-400 mb-6">
+            {[...Array(5)].map(() => (
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+
+          <p class="text-text-primary text-lg font-medium mb-6 relative z-10">
+            "{t.quote}"
+          </p>
+
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg">
+              {t.avatar}
+            </div>
+            <div>
+              <div class="font-bold text-text-primary">{t.author}</div>
+              <div class="text-sm text-text-secondary">{t.role}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

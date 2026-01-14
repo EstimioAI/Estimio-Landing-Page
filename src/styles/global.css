@@ -295,8 +295,9 @@ a[target="_blank"]::after {
   vertical-align: middle;
 }
 
-/* Exclude app store badges from external link indicator */
-a[target="_blank"]:has(img)::after {
+/* Exclude app store badges and buttons from external link indicator */
+a[target="_blank"]:has(img)::after,
+a[target="_blank"].btn::after {
   display: none;
 }
 

@@ -1,11 +1,13 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Nav from '../components/layout/Nav.astro';
-import Footer from '../components/layout/Footer.astro';
-import Hero from '../components/sections/Hero.astro';
-import HowItWorks from '../components/sections/HowItWorks.astro';
-import Features from '../components/sections/Features.astro';
-import FooterCTA from '../components/sections/FooterCTA.astro';
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/layout/Nav.astro";
+import Footer from "../components/layout/Footer.astro";
+import Hero from "../components/sections/Hero.astro";
+import HowItWorks from "../components/sections/HowItWorks.astro";
+import Features from "../components/sections/Features.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import FAQ from "../components/sections/FAQ.astro";
+import FooterCTA from "../components/sections/FooterCTA.astro";
 ---
 
 <Layout title="Estimio - Create Estimates in Minutes with AI">
@@ -15,6 +17,8 @@ import FooterCTA from '../components/sections/FooterCTA.astro';
     <Hero />
     <HowItWorks />
     <Features />
+    <Testimonials />
+    <FAQ />
     <FooterCTA />
   </main>
 
@@ -22,15 +26,25 @@ import FooterCTA from '../components/sections/FooterCTA.astro';
 </Layout>
 
 <script>
-  import { initLenis, initAnimations, initHeroAnimation, initImageReveal, cleanup } from '../lib/animations';
+  import {
+    initLenis,
+    initAnimations,
+    initHeroAnimation,
+    initHeroScrollytelling,
+    initImageReveal,
+    cleanup,
+  } from "../lib/animations";
 
   // Initialize on DOM ready
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Initialize Lenis smooth scroll
     const lenis = initLenis();
 
     // Hero entrance animation (runs first)
     initHeroAnimation();
+
+    // Initialize hero scrollytelling
+    initHeroScrollytelling();
 
     // Initialize scroll-triggered animations
     initAnimations();
@@ -39,7 +53,7 @@ import FooterCTA from '../components/sections/FooterCTA.astro';
     initImageReveal();
 
     // Cleanup on page unload
-    window.addEventListener('beforeunload', () => {
+    window.addEventListener("beforeunload", () => {
       cleanup();
       lenis?.destroy();
     });

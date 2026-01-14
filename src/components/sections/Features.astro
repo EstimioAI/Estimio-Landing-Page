@@ -1,84 +1,104 @@
 ---
-import FeatureCard from '../ui/FeatureCard.astro';
-
-const featuresTop = [
+const features = [
   {
-    title: 'Photo-Powered Estimates',
-    description: 'Snap a photo of the job site and let AI analyze dimensions, materials, and scope automatically.',
-    image: '/assets/screenshots/Photo-Powered Estimates.jpg',
-    imageAlt: 'Photo-powered estimates feature showing camera integration',
-    icon: 'camera',
-    badge: 'AI Vision',
+    title: "Instant Revisions",
+    description:
+      "Scope changed? Add or remove items from existing estimates in seconds without rewriting the whole document.",
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>`,
   },
   {
-    title: 'Instant Localized Pricing',
-    description: 'Get accurate material and labor costs based on your specific location and current market rates.',
-    image: '/assets/screenshots/Instant Localized Pricing.jpg',
-    imageAlt: 'Instant localized pricing feature showing real-time costs',
-    icon: 'location',
-    badge: 'Real-time',
-  },
-];
-
-const featuresBottom = [
-  {
-    title: 'Revise in Seconds',
-    description: 'Need to adjust scope or materials? Simply describe the changes and get an updated estimate instantly.',
-    image: '/assets/screenshots/Revise in Seconds.png',
-    imageAlt: 'Revise in seconds feature showing quick edits',
-    icon: 'refresh',
+    title: "Version History",
+    description:
+      "Made a mistake? Restore any previous version of your estimate instantly. Your history is always safe.",
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
   },
   {
-    title: 'Know Your Margins',
-    description: 'See your profit margins clearly on every estimate. Set markup targets and optimize your pricing.',
-    image: '/assets/screenshots/Know your Margins.png',
-    imageAlt: 'Know your margins feature showing profit analysis',
-    icon: 'chart',
+    title: "Client CRM",
+    description:
+      "Store client details and auto-fill future proposals. Manage your entire book of business in one place.",
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>`,
   },
   {
-    title: 'Professional Proposals',
-    description: 'Generate polished, client-ready proposals with your branding that win more jobs.',
-    image: '/assets/screenshots/Professional Proposals.png',
-    imageAlt: 'Professional proposals feature showing branded documents',
-    icon: 'document',
+    title: "Payment Tracking",
+    description:
+      "Track partial and full payments seamlessly. Know exactly who owes you money at a glance.",
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
+  },
+  {
+    title: "Custom Rates",
+    description:
+      "Instruct the AI on your specific labor rates and material costs. Stop underbidding on complex jobs.",
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" /></svg>`,
+  },
+  {
+    title: "Branded Experience",
+    description:
+      "Look professional with your company logo, custom footer, and terms on every PDF you send.",
+    icon: `<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>`,
   },
 ];
 ---
 
-<section id="features" class="py-20 md:py-28 lg:py-32 bg-bg-gray scroll-mt-20">
+<section
+  id="features"
+  class="relative z-40 py-20 md:py-28 lg:py-32 bg-bg-gray scroll-mt-20"
+>
   <div class="section-container">
     <!-- Section Header -->
     <div class="text-center mb-14 md:mb-20">
-      <div class="gsap-fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-separator text-text-secondary text-sm font-medium mb-6 shadow-sm">
-        <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+      <div
+        class="gsap-fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-primary/10 text-primary text-sm font-medium mb-6 shadow-sm"
+      >
+        <svg
+          class="w-4 h-4 text-primary"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+          >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
+          ></path>
         </svg>
         Powerful Features
       </div>
-      <h2 class="gsap-fade-up text-3xl md:text-4xl lg:text-5xl font-semibold text-text-primary tracking-tight mb-5">
+      <h2
+        class="gsap-fade-up text-3xl md:text-4xl lg:text-5xl font-semibold text-text-primary tracking-tight mb-5"
+      >
         Everything You Need to
-        <span class="gradient-text">Win More Jobs</span>
+        <span class="gradient-text">Run Your Business</span>
       </h2>
-      <p class="gsap-fade-up text-lg md:text-xl text-text-secondary max-w-2xl mx-auto">
-        Powerful features designed to streamline your estimating workflow and close more deals
+      <p
+        class="gsap-fade-up text-lg md:text-xl text-text-secondary max-w-2xl mx-auto"
+      >
+        Tools designed to help you win more jobs, track every dollar, and look
+        professional.
       </p>
     </div>
 
-    <!-- Features Grid -->
-    <div class="space-y-6 lg:space-y-8">
-      <!-- Top Row - 2 columns (larger cards) -->
-      <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
-        {featuresTop.map((feature, index) => (
-          <FeatureCard {...feature} size="large" index={index} />
-        ))}
-      </div>
-
-      <!-- Bottom Row - 3 columns -->
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
-        {featuresBottom.map((feature, index) => (
-          <FeatureCard {...feature} size="default" index={index + 2} />
-        ))}
-      </div>
+    <!-- Features Grid (Text Only) -->
+    <div
+      class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto"
+    >
+      {
+        features.map((feature, index) => (
+          <div class="gsap-fade-up bg-white p-8 rounded-2xl lg:rounded-3xl border border-separator/50 hover:border-primary/20 shadow-sm hover:shadow-md transition-all duration-300 group">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <span set:html={feature.icon} />
+            </div>
+            <h3 class="text-xl font-semibold text-text-primary mb-3">
+              {feature.title}
+            </h3>
+            <p class="text-text-secondary leading-relaxed">
+              {feature.description}
+            </p>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
