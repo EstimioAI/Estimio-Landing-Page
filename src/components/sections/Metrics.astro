@@ -1,0 +1,49 @@
+---
+import MetricCard from "../ui/MetricCard.astro";
+
+const metrics = [
+  {
+    value: "25",
+    prefix: "+",
+    suffix: " hrs",
+    label: "Saved Monthly",
+  },
+  {
+    value: "30",
+    prefix: "+",
+    suffix: "%",
+    label: "More Jobs Closed",
+  },
+  {
+    value: "20",
+    prefix: "+$",
+    suffix: "K",
+    label: "More Earned Monthly",
+  },
+  {
+    value: "80",
+    prefix: "+$",
+    suffix: "K",
+    label: "In Annual Profits",
+  },
+];
+---
+
+<section class="py-16 md:py-20 bg-gradient-to-b from-white to-gray-50/50">
+  <div class="section-container">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        {
+          metrics.map((metric, index) => (
+            <div class="gsap-fade-up" style={`--delay: ${index * 0.1}s`}>
+              <MetricCard
+                {...metric}
+                class="!bg-white border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,42 +1,6 @@
 ---
-import MetricCard from "../ui/MetricCard.astro";
-
 const appStoreUrl =
   "https://apps.apple.com/us/app/estimio-ai-estimates/id6746227498";
-
-const metricsLeft = [
-  {
-    value: "25",
-    prefix: "+",
-    suffix: " hrs",
-    label: "Saved Monthly",
-    floatClass: "float-1",
-  },
-  {
-    value: "30",
-    prefix: "+",
-    suffix: "%",
-    label: "More Jobs Closed",
-    floatClass: "float-3",
-  },
-];
-
-const metricsRight = [
-  {
-    value: "20",
-    prefix: "+$",
-    suffix: "K",
-    label: "More Earned Monthly",
-    floatClass: "float-2",
-  },
-  {
-    value: "80",
-    prefix: "+$",
-    suffix: "K",
-    label: "In Annual Profits",
-    floatClass: "float-4",
-  },
-];
 ---
 
 <section class="relative">
@@ -51,7 +15,7 @@ const metricsRight = [
   >
   </div>
 
-  <div class="relative section-container pt-32 pb-20 md:pt-44 md:pb-32">
+  <div class="relative section-container pt-32 pb-10 md:pt-44 md:pb-16">
     <!-- Audience Pill -->
     <div class="text-center">
       <div
@@ -90,115 +54,15 @@ const metricsRight = [
         href={appStoreUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="hidden md:flex items-center gap-2 btn btn-primary px-6 py-3.5 text-sm md:text-base font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+        class="inline-block transition-transform duration-300 hover:scale-105"
         aria-label="Download Estimio from the App Store"
       >
-        <svg
-          class="w-5 h-5"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-          ></path>
-        </svg>
-        Get the App
+        <img
+          src="/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg"
+          alt="Download on the App Store"
+          class="h-12 w-auto"
+        />
       </a>
-    </div>
-
-    <!-- Phone Showcase with floating metrics -->
-    <!-- Phone Showcase with floating metrics -->
-    <div class="relative z-10 mx-auto w-max">
-      <!-- Left Metrics -->
-      <!-- Positioned relative to the central phone container -->
-      <!-- On larger screens, pushed out by padding. On smaller screens, they overlap (z-20) -->
-      <div
-        id="hero-metrics-left"
-        class="absolute right-[85%] md:right-full top-1/2 -translate-y-1/2 flex flex-col gap-6 md:gap-8 z-20 pr-4 lg:pr-12 pointer-events-none w-max"
-      >
-        {
-          metricsLeft.map((metric, index) => (
-            <div class="pointer-events-auto">
-              <MetricCard
-                {...metric}
-                class="gsap-fade-up !bg-white/70 !backdrop-blur-xl !border-white/50 shadow-xl"
-                compact
-                style={`--delay: ${index * 0.1}s`}
-              />
-            </div>
-          ))
-        }
-      </div>
-
-      <!-- Phone Image Wrapper -->
-      <div class="relative z-10">
-        <div
-          id="hero-phone-container"
-          class="relative w-[280px] sm:w-[320px] md:w-[340px] lg:w-[340px] xl:w-[380px]"
-        >
-          <div
-            id="hero-glow"
-            class="absolute inset-0 bg-blue-500/30 blur-[60px] scale-95 translate-y-4 rounded-[3rem]"
-          >
-          </div>
-          <!-- Step 1 Image (Default Hero) -->
-          <img
-            id="hero-phone-step-1"
-            src="/assets/screenshots/Hero Image Middle.png"
-            alt="Estimio app showing a master bathroom renovation estimate"
-            class="relative w-full drop-shadow-2xl gsap-scale-in z-10"
-            width="360"
-            height="740"
-          />
-          <!-- Step 2 Image (Breakdown) -->
-          <img
-            id="hero-phone-step-2"
-            src="/assets/screenshots/Breakdown.png"
-            alt="Estimio app showing estimate breakdown"
-            class="absolute inset-0 w-full drop-shadow-2xl z-20 opacity-0"
-            width="360"
-            height="740"
-          />
-          <!-- Step 3 Image (Pricing/Margins - NEW) -->
-          <img
-            id="hero-phone-step-3"
-            src="/assets/screenshots/Pricing.png"
-            alt="Estimio app showing pricing and margins"
-            class="absolute inset-0 w-full drop-shadow-2xl z-30 opacity-0"
-            width="360"
-            height="740"
-          />
-          <!-- Step 4 Image (Proposal - WAS Step 3) -->
-          <img
-            id="hero-phone-step-4"
-            src="/assets/screenshots/Proposal.png"
-            alt="Estimio app showing proposal"
-            class="absolute inset-0 w-full drop-shadow-2xl z-40 opacity-0"
-            width="360"
-            height="740"
-          />
-        </div>
-      </div>
-
-      <!-- Right Metrics -->
-      <div
-        id="hero-metrics-right"
-        class="absolute left-[85%] md:left-full top-1/2 -translate-y-1/2 flex flex-col gap-6 md:gap-8 z-20 pl-4 lg:pl-12 pointer-events-none w-max"
-      >
-        {
-          metricsRight.map((metric, index) => (
-            <div class="pointer-events-auto">
-              <MetricCard
-                {...metric}
-                class="gsap-fade-up !bg-white/70 !backdrop-blur-xl !border-white/50 shadow-xl"
-                compact
-                style={`--delay: ${(index + 2) * 0.1}s`}
-              />
-            </div>
-          ))
-        }
-      </div>
     </div>
   </div>
 </section>

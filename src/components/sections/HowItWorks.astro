@@ -1,239 +1,232 @@
 ---
 const steps = [
   {
-    number: "1",
+    number: 1,
     title: "Describe the Job",
     description:
       "Tell Estimio about the project using text or photos. Include dimensions, materials, and scope.",
-    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-    </svg>`,
+    image: "/assets/screenshots/Hero Image Middle.png",
   },
   {
-    number: "2",
+    number: 2,
     title: "AI Generates Estimate",
     description:
       "Our AI analyzes your input and creates a detailed, accurate estimate with localized pricing.",
-    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-    </svg>`,
+    image: "/assets/screenshots/Breakdown.png",
   },
   {
-    number: "3",
+    number: 3,
     title: "Adjust your Margins",
     description:
       "Fine-tune labor and material markups to ensure maximum profitability on every job.",
-    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>`,
+    image: "/assets/screenshots/Pricing.png",
   },
   {
-    number: "4",
+    number: 4,
     title: "Send to Client",
     description:
       "Review, customize if needed, and send professional proposals directly to your clients.",
-    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-    </svg>`,
+    image: "/assets/screenshots/Proposal.png",
   },
 ];
 ---
 
 <section
   id="how-it-works"
-  class="py-20 md:py-28 lg:py-32 bg-white scroll-mt-20"
+  class="pt-0 pb-12 md:pb-20 lg:pb-24 bg-white scroll-mt-20"
 >
   <div class="section-container">
-    <!-- Section Header -->
-    <div
-      class="text-center lg:text-left mb-16 md:mb-24 max-w-6xl mx-auto px-4 lg:px-0"
-    >
-      <div
-        class="gsap-fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6"
-      >
-        <svg
-          class="w-4 h-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-        </svg>
-        Quick & Easy
-      </div>
-      <h2
-        class="gsap-fade-up text-3xl md:text-4xl lg:text-5xl font-semibold text-text-primary tracking-tight mb-5"
-      >
-        How It Works
-      </h2>
-    </div>
+    <!-- Section Header Removed for seamless transition -->
 
-    <!-- Scrollytelling Container (Desktop) / Grid (Mobile) -->
-    <div class="relative">
-      <!-- Mobile Layout (< md) - Static List -->
-      <div class="md:hidden flex flex-col gap-12 px-4">
-        <!-- Step 1: Text Only (Visual is the Hero Phone above) -->
-        <div class="gsap-fade-up text-center">
-          <div class="inline-block mb-4">
-            <span
-              class="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary/60 drop-shadow-sm"
-              >01</span
-            >
-          </div>
-          <h3 class="text-2xl font-semibold text-text-primary mb-3">
-            Describe the Job
-          </h3>
-          <p class="text-lg text-text-secondary leading-relaxed">
-            Tell Estimio about the project using text or photos. Include
-            dimensions, materials, and scope.
-          </p>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="gsap-fade-up flex flex-col gap-6">
+    <!-- Interactive Layout -->
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <!-- Left: Step Cards -->
+        <div class="relative flex flex-col order-2 lg:order-1 min-w-0">
+          <!-- Steps Container -->
           <div
-            class="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-gray-50"
+            id="hiw-steps-container"
+            class="flex flex-row lg:flex-col gap-4 overflow-x-auto lg:overflow-visible snap-x snap-mandatory py-4 -mx-4 px-4 lg:p-0 lg:m-0 no-scrollbar"
           >
-            <img
-              src="/assets/screenshots/Breakdown.png"
-              alt="AI generating estimate breakdown"
-              class="w-full h-auto"
-            />
-          </div>
-          <div class="text-center">
-            <div class="inline-block mb-3">
-              <span
-                class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary/60 drop-shadow-sm"
-                >02</span
-              >
-            </div>
-            <h3 class="text-2xl font-semibold text-text-primary mb-2">
-              AI Generates Estimate
-            </h3>
-            <p class="text-lg text-text-secondary leading-relaxed">
-              Our AI analyzes your input and creates a detailed, accurate
-              estimate with localized pricing.
-            </p>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="gsap-fade-up flex flex-col gap-6">
-          <div
-            class="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-gray-50"
-          >
-            <img
-              src="/assets/screenshots/Pricing.png"
-              alt="Adjusting margins and pricing"
-              class="w-full h-auto"
-            />
-          </div>
-          <div class="text-center">
-            <div class="inline-block mb-3">
-              <span
-                class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary/60 drop-shadow-sm"
-                >03</span
-              >
-            </div>
-            <h3 class="text-2xl font-semibold text-text-primary mb-2">
-              Adjust your Margins
-            </h3>
-            <p class="text-lg text-text-secondary leading-relaxed">
-              Fine-tune labor and material markups to ensure maximum
-              profitability on every job.
-            </p>
-          </div>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="gsap-fade-up flex flex-col gap-6">
-          <div
-            class="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-gray-50"
-          >
-            <img
-              src="/assets/screenshots/Proposal.png"
-              alt="Sending proposal to client"
-              class="w-full h-auto"
-            />
-          </div>
-          <div class="text-center">
-            <div class="inline-block mb-3">
-              <span
-                class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary/60 drop-shadow-sm"
-                >04</span
-              >
-            </div>
-            <h3 class="text-2xl font-semibold text-text-primary mb-2">
-              Send to Client
-            </h3>
-            <p class="text-lg text-text-secondary leading-relaxed">
-              Review, customize if needed, and send professional proposals
-              directly to your clients.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Scrollytelling Layout (Tablets & Desktop >= md) -->
-      <!-- Two columns: Left for text (closer to center), right for pinned phone -->
-      <div
-        class="hidden md:grid md:grid-cols-2 gap-0 relative max-w-6xl mx-auto"
-      >
-        <!-- Left Column: Scrolling Text Steps -->
-        <div class="relative pl-4 pr-4 lg:pl-10">
-          <!-- 1. Sticky Visible Stack -->
-          <div
-            class="sticky top-[25vh] lg:top-[15vh] flex flex-col gap-8 max-w-md relative z-20"
-          >
-            <!-- Connecting Line -->
-            <div
-              class="absolute left-[1.1rem] top-8 bottom-8 w-px border-l-2 border-dashed border-primary/20 z-0"
-            >
-            </div>
-
             {
-              steps.map((step) => (
-                <div
-                  id={`hiw-text-${step.number}`}
-                  class="flex flex-col gap-2 opacity-30 transition-all duration-500 hiw-content transform translate-y-4"
+              steps.map((step, index) => (
+                <button
+                  type="button"
+                  data-step={step.number}
+                  data-image={step.image}
+                  class:list={[
+                    "hiw-step-card",
+                    "gsap-fade-up",
+                    "text-left p-5 md:p-6 rounded-2xl border-2 transition-all duration-300 cursor-pointer relative z-10",
+                    "min-w-[85vw] sm:min-w-[380px] lg:min-w-0 lg:w-full snap-center",
+                    "hover:border-primary",
+                    index === 0
+                      ? "bg-primary/5 border-primary shadow-lg shadow-primary/10"
+                      : "border-gray-200 bg-white hover:bg-primary/5",
+                    "focus:outline-none",
+                  ]}
                 >
-                  <div class="flex items-center gap-4">
-                    <div class="relative z-10 bg-white pr-2">
-                      <span class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary/60 step-number drop-shadow-sm">
-                        0{step.number}
-                      </span>
+                  <div class="flex items-start gap-4">
+                    <span
+                      class:list={[
+                        "hiw-step-number",
+                        "text-3xl md:text-4xl font-bold shrink-0",
+                        "bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary/60",
+                      ]}
+                    >
+                      0{step.number}
+                    </span>
+                    <div class="flex-1 min-w-0">
+                      <h3
+                        class:list={[
+                          "hiw-step-title",
+                          "text-lg md:text-xl font-semibold mb-1 text-text-primary",
+                        ]}
+                      >
+                        {step.title}
+                      </h3>
+                      <p
+                        class:list={[
+                          "hiw-step-desc",
+                          "text-sm md:text-base leading-relaxed text-text-secondary",
+                        ]}
+                      >
+                        {step.description}
+                      </p>
                     </div>
-                    <h3 class="text-2xl font-semibold text-text-primary">
-                      {step.title}
-                    </h3>
                   </div>
-                  <p class="text-lg text-text-secondary leading-relaxed pl-14">
-                    {step.description}
-                  </p>
-                </div>
+                </button>
               ))
             }
-          </div>
-
-          <!-- 2. Ghost Triggers (Invisible, provides scroll height) -->
-          <div class="w-full relative z-0">
-            {
-              steps.map((step) => (
-                <div id={`hiw-trigger-${step.number}`} class="h-[80vh]" />
-              ))
-            }
-            <div class="h-[20vh]"></div>
-            <!-- Bottom spacer -->
           </div>
         </div>
 
-        <!-- Right Column: Empty track on desktop. Phone lives here in spirit but is pinned from Hero. -->
-        <div class="relative h-full"></div>
+        <!-- Right: Phone Image -->
+        <div class="flex justify-center order-1 lg:order-2">
+          <div
+            class="relative w-[280px] sm:w-[320px] md:w-[340px] lg:w-[320px] xl:w-[360px]"
+          >
+            <!-- Glow effect -->
+            <div
+              class="absolute inset-0 bg-blue-500/20 blur-[60px] scale-95 translate-y-4 rounded-[3rem]"
+            >
+            </div>
+            <!-- Phone images container -->
+            <div id="hiw-phone-container" class="relative">
+              {
+                steps.map((step, index) => (
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    data-step={step.number}
+                    class:list={[
+                      "hiw-phone-image",
+                      "w-full drop-shadow-2xl rounded-[2rem] transition-all duration-500",
+                      index === 0
+                        ? "relative opacity-100"
+                        : "absolute inset-0 opacity-0",
+                    ]}
+                    width="360"
+                    height="740"
+                  />
+                ))
+              }
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  function initHowItWorks() {
+    const stepCards =
+      document.querySelectorAll<HTMLButtonElement>(".hiw-step-card");
+    const phoneImages =
+      document.querySelectorAll<HTMLImageElement>(".hiw-phone-image");
+
+    if (stepCards.length === 0) return;
+
+    function setActiveStep(stepNumber: number) {
+      // Update cards
+      stepCards.forEach((card) => {
+        const cardStep = parseInt(card.dataset.step || "1", 10);
+        const isActive = cardStep === stepNumber;
+
+        // Update card styles (light blue bg for active, white bg for inactive)
+        if (isActive) {
+          card.classList.remove(
+            "border-gray-200",
+            "bg-white",
+            "hover:bg-primary/5",
+          );
+          card.classList.add(
+            "border-primary",
+            "bg-primary/5",
+            "shadow-lg",
+            "shadow-primary/10",
+          );
+        } else {
+          card.classList.remove(
+            "border-primary",
+            "bg-primary/5",
+            "shadow-lg",
+            "shadow-primary/10",
+          );
+          card.classList.add(
+            "border-gray-200",
+            "bg-white",
+            "hover:bg-primary/5",
+          );
+        }
+        // Text colors remain unchanged (always dark)
+      });
+
+      // Update phone images
+      phoneImages.forEach((img) => {
+        const imgStep = parseInt(img.dataset.step || "1", 10);
+        if (imgStep === stepNumber) {
+          img.classList.remove("opacity-0", "absolute", "inset-0");
+          img.classList.add("opacity-100", "relative");
+        } else {
+          img.classList.remove("opacity-100", "relative");
+          img.classList.add("opacity-0", "absolute", "inset-0");
+        }
+      });
+    }
+
+    // Add click handlers
+    stepCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const stepNumber = parseInt(card.dataset.step || "1", 10);
+        setActiveStep(stepNumber);
+      });
+    });
+
+    // Add scroll observer for mobile swiper
+    const stepsContainer = document.getElementById("hiw-steps-container");
+    if (stepsContainer && window.matchMedia("(max-width: 1024px)").matches) {
+      const observerOptions = {
+        root: stepsContainer,
+        threshold: 0.6, // Trigger when 60% visible
+        rootMargin: "0px -20% 0px -20%", // Focus on center area
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const card = entry.target as HTMLElement;
+            const stepNumber = parseInt(card.dataset.step || "1", 10);
+            setActiveStep(stepNumber);
+          }
+        });
+      }, observerOptions);
+
+      stepCards.forEach((card) => observer.observe(card));
+    }
+  }
+
+  // Initialize on DOM ready
+  document.addEventListener("DOMContentLoaded", initHowItWorks);
+</script>

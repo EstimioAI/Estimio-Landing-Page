@@ -16,6 +16,7 @@ import FooterCTA from "../components/sections/FooterCTA.astro";
   <main id="main-content">
     <Hero />
     <HowItWorks />
+    <!-- Metrics section removed -->
     <Features />
     <Testimonials />
     <FAQ />
@@ -30,7 +31,6 @@ import FooterCTA from "../components/sections/FooterCTA.astro";
     initLenis,
     initAnimations,
     initHeroAnimation,
-    initHeroScrollytelling,
     initImageReveal,
     cleanup,
   } from "../lib/animations";
@@ -42,9 +42,6 @@ import FooterCTA from "../components/sections/FooterCTA.astro";
 
     // Hero entrance animation (runs first)
     initHeroAnimation();
-
-    // Initialize hero scrollytelling
-    initHeroScrollytelling();
 
     // Initialize scroll-triggered animations
     initAnimations();
