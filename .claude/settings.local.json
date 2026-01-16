@@ -10,7 +10,8 @@
       "Bash(echo:*)",
       "Bash(npm run build:*)",
       "Bash(ls -la \"c:\\\\Estimio-Landing-Page-1\\\\public\\\\assets\\\\screenshots\"\" 2>&1 || echo \"Screenshots folder doesn 't exist \")",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(cd:*)"
     ]
   }
 }

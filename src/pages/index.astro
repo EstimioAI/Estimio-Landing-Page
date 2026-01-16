@@ -29,9 +29,9 @@ import FooterCTA from "../components/sections/FooterCTA.astro";
 <script>
   import {
     initLenis,
-    initAnimations,
-    initHeroAnimation,
+    initPageLoadSequence,
     initImageReveal,
+    initMicroParallax,
     cleanup,
   } from "../lib/animations";
 
@@ -40,14 +40,15 @@ import FooterCTA from "../components/sections/FooterCTA.astro";
     // Initialize Lenis smooth scroll
     const lenis = initLenis();
 
-    // Hero entrance animation (runs first)
-    initHeroAnimation();
-
-    // Initialize scroll-triggered animations
-    initAnimations();
+    // Run the full page load animation sequence
+    // Sequence: Nav → Hero content → Phone mockup → Step cards → then scroll triggers
+    initPageLoadSequence();
 
     // Initialize image reveal animations
     initImageReveal();
+
+    // Initialize micro-parallax for depth
+    initMicroParallax();
 
     // Cleanup on page unload
     window.addEventListener("beforeunload", () => {

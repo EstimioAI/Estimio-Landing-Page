@@ -3,15 +3,26 @@ const appStoreUrl =
   "https://apps.apple.com/us/app/estimio-ai-estimates/id6746227498";
 ---
 
-<section class="relative">
+<section class="relative overflow-hidden -mt-4 pt-4">
   <!-- Background: White to blue gradient with grid -->
   <div
     class="absolute inset-0 bg-gradient-to-b from-[#C5DFFF] via-[#E8F4FF] to-white"
+    data-parallax="0.3"
+    data-parallax-direction="down"
   >
   </div>
   <div
     class="absolute inset-0 grid-pattern"
     style="mask-image: linear-gradient(to bottom, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);"
+    data-parallax="0.15"
+  >
+  </div>
+
+  <!-- Subtle ambient glow - very restrained -->
+  <div
+    class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"
+    data-parallax="0.2"
+    aria-hidden="true"
   >
   </div>
 

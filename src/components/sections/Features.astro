@@ -86,8 +86,11 @@ const features = [
     >
       {
         features.map((feature, index) => (
-          <div class="gsap-fade-up bg-white p-8 rounded-2xl lg:rounded-3xl border border-separator/50 hover:border-primary/20 shadow-sm hover:shadow-md transition-all duration-300 group">
-            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+          <div
+            class="gsap-fade-up bg-white p-8 rounded-2xl lg:rounded-3xl border border-separator/50 hover:border-primary/20 shadow-sm group feature-card"
+            data-animate-delay={index + 1}
+          >
+            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300 ease-out">
               <span set:html={feature.icon} />
             </div>
             <h3 class="text-xl font-semibold text-text-primary mb-3">

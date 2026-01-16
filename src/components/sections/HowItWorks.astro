@@ -121,11 +121,12 @@ const steps = [
                     data-step={step.number}
                     class:list={[
                       "hiw-phone-image",
-                      "w-full drop-shadow-2xl rounded-[2rem] transition-all duration-500",
+                      "w-full drop-shadow-2xl rounded-[2rem]",
                       index === 0
                         ? "relative opacity-100"
                         : "absolute inset-0 opacity-0",
                     ]}
+                    style="transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);"
                     width="360"
                     height="740"
                   />

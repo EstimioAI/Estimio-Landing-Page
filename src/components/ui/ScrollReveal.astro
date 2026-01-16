@@ -1,0 +1,53 @@
+---
+/**
+ * ScrollReveal Component
+ *
+ * A wrapper component that applies scroll-triggered animations to its children.
+ * Uses the gsap-fade-up class system for consistency.
+ *
+ * Usage:
+ * <ScrollReveal>
+ *   <div>Content to animate</div>
+ * </ScrollReveal>
+ *
+ * With delay (for staggering multiple items):
+ * <ScrollReveal delay={1}>First item</ScrollReveal>
+ * <ScrollReveal delay={2}>Second item</ScrollReveal>
+ *
+ * With scale animation:
+ * <ScrollReveal animation="scale">
+ *   <div>Content</div>
+ * </ScrollReveal>
+ */
+
+interface Props {
+  /** Animation type: 'fade-up' (default), 'scale', 'fade' */
+  animation?: 'fade-up' | 'scale' | 'fade';
+  /** Delay index for staggering (1-6) */
+  delay?: 1 | 2 | 3 | 4 | 5 | 6;
+  /** Additional CSS classes */
+  class?: string;
+  /** HTML tag to render */
+  as?: 'div' | 'section' | 'article' | 'aside' | 'span';
+}
+
+const {
+  animation = 'fade-up',
+  delay,
+  class: className = '',
+  as: Tag = 'div',
+} = Astro.props;
+
+const animationClass = {
+  'fade-up': 'gsap-fade-up',
+  'scale': 'gsap-scale-in',
+  'fade': 'gsap-fade-in',
+}[animation];
+---
+
+<Tag
+  class:list={[animationClass, className]}
+  data-animate-delay={delay}
+>
+  <slot />
+</Tag>

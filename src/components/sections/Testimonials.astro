@@ -43,7 +43,10 @@ const testimonials = [
 
     <div class="grid md:grid-cols-3 gap-8">
       {testimonials.map((t, i) => (
-        <div class="gsap-fade-up bg-bg-gray p-8 rounded-3xl relative">
+        <div
+          class="gsap-fade-up bg-bg-gray p-8 rounded-3xl relative testimonial-card"
+          data-animate-delay={i + 1}
+        >
           <!-- Quote Icon -->
           <div class="absolute top-8 right-8 text-primary/10">
             <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">

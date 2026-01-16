@@ -6,18 +6,23 @@ const appStoreUrl =
 <section class="py-20 md:py-28 lg:py-32 bg-white">
   <div class="section-container">
     <div
-      class="gsap-scale-in relative overflow-hidden rounded-3xl lg:rounded-[2rem]"
+      class="gsap-scale-in relative overflow-hidden rounded-3xl lg:rounded-[2rem] cta-glow"
     >
       <!-- Background with gradient -->
       <div class="absolute inset-0 shimmer-bg"></div>
 
-      <!-- Decorative elements -->
+      <!-- Decorative elements with subtle parallax -->
       <div
         class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"
+        data-parallax="0.15"
+        aria-hidden="true"
       >
       </div>
       <div
         class="absolute bottom-0 left-0 w-80 h-80 bg-primary-dark/30 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"
+        data-parallax="0.1"
+        data-parallax-direction="down"
+        aria-hidden="true"
       >
       </div>
 
