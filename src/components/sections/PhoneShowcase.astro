@@ -73,21 +73,21 @@ const metricsRight = [
     </div>
 
     <!-- Mobile Layout: Phone on top, metrics below in 2x2 grid -->
-    <div class="md:hidden">
+    <div class="md:hidden w-full">
       <!-- Phone centered -->
-      <div class="relative flex justify-center mb-10">
+      <div class="relative flex justify-center mb-10 w-full">
         <div class="absolute inset-0 bg-primary/15 blur-[60px] scale-50"></div>
         <img
           src="/assets/screenshots/Hero Image Middle.png"
           alt="Estimio app showing a master bathroom renovation estimate"
-          class="relative w-[260px] scale-in"
+          class="relative w-[260px] max-w-[90vw] scale-in"
           width="260"
           height="533"
         />
       </div>
 
       <!-- Metrics in 2x2 grid -->
-      <div class="grid grid-cols-2 gap-3 px-2">
+      <div class="grid grid-cols-2 gap-3 px-2 w-full">
         {[...metricsLeft, ...metricsRight].map((metric, index) => (
           <MetricCard {...metric} floatClass="" class="fade-up" compact />
         ))}
