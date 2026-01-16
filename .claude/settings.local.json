@@ -12,7 +12,8 @@
       "Bash(ls -la \"c:\\\\Estimio-Landing-Page-1\\\\public\\\\assets\\\\screenshots\"\" 2>&1 || echo \"Screenshots folder doesn 't exist \")",
       "Bash(ls:*)",
       "Bash(cd:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(tree:*)"
     ]
   }
 }

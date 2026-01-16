@@ -2,11 +2,13 @@
 interface Props {
   title: string;
   description?: string;
+  keywords?: string;
 }
 
 const {
   title,
   description = "Create professional estimates in minutes with AI. Simply describe the job and let AI handle the rest.",
+  keywords = "AI estimates, contractor estimates, construction estimates, estimating software, proposal software, contractor app, AI estimator, job estimates, construction proposals, renovation estimates",
 } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, "https://estimio.ai");
 ---
@@ -17,12 +19,30 @@ const canonicalURL = new URL(Astro.url.pathname, "https://estimio.ai");
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes" />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Estimio" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#007AFF" />
+
     <!-- Safari/iOS optimizations -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Estimio" />
+    <link rel="apple-touch-icon" href="/LOGO.png" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/LOGO.png" />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- DNS Prefetch & Preconnect for performance -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/assets/screenshots/estimio-logo-text.png" as="image" type="image/png" />
+    <link rel="preload" href="/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" as="image" type="image/svg+xml" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -45,17 +65,23 @@ const canonicalURL = new URL(Astro.url.pathname, "https://estimio.ai");
     />
 
     <!-- Fonts - Optimized loading with display=swap and reduced weights -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Only load 400 (regular) and 600 (semibold) - covers 90%+ of use cases -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <title>{title}</title>
 
-    <!-- Structured Data -->
+    <!-- Structured Data - MobileApplication -->
     <script
       type="application/ld+json"
       set:html={JSON.stringify({
@@ -65,6 +91,8 @@ const canonicalURL = new URL(Astro.url.pathname, "https://estimio.ai");
         description: description,
         applicationCategory: "BusinessApplication",
         operatingSystem: "iOS",
+        url: "https://estimio.ai",
+        downloadUrl: "https://apps.apple.com/us/app/estimio-ai-estimates/id6746227498",
         offers: {
           "@type": "Offer",
           price: "0",
@@ -76,6 +104,42 @@ const canonicalURL = new URL(Astro.url.pathname, "https://estimio.ai");
           ratingValue: "5",
           ratingCount: "1",
         },
+      })}
+    />
+
+    <!-- Structured Data - Organization -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Estimio",
+        url: "https://estimio.ai",
+        logo: "https://estimio.ai/LOGO.png",
+        description: "AI-powered estimating software for contractors, handymen, and remodelers",
+        sameAs: [
+          "https://apps.apple.com/us/app/estimio-ai-estimates/id6746227498"
+        ],
+      })}
+    />
+
+    <!-- Structured Data - WebSite -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Estimio",
+        url: "https://estimio.ai",
+        description: description,
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: "https://estimio.ai/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
       })}
     />
   </head>

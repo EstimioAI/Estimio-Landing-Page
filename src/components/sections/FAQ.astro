@@ -17,15 +17,31 @@ const faqs = [
         answer: "Yes. You can convert any estimate into a professional PDF invoice with one tap. Track payments, view outstanding balances, and get paid faster without extra paperwork.",
     },
 ];
+
+// FAQ Structured Data for SEO
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(faq => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer
+        }
+    }))
+};
 ---
 
 <section
     id="faq"
     class="py-20 md:py-28 bg-bg-gray border-t border-separator/50"
+    aria-labelledby="faq-heading"
 >
     <div class="section-container max-w-4xl mx-auto">
         <div class="text-center mb-16">
             <h2
+                id="faq-heading"
                 class="fade-up text-3xl md:text-4xl font-semibold text-text-primary mb-4"
             >
                 Frequently Asked Questions
@@ -40,8 +56,10 @@ const faqs = [
                 faqs.map((faq, index) => (
                     <div class="fade-up faq-item bg-white rounded-2xl border border-separator/50 hover:shadow-md hover:border-primary/20 transition-all duration-300 overflow-hidden group">
                         <button
+                            type="button"
                             class="faq-btn w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none"
                             aria-expanded="false"
+                            aria-controls={`faq-answer-${index}`}
                             onclick="toggleFaq(this)"
                         >
                             <span class="text-xl font-semibold text-text-primary group-hover:text-primary transition-colors duration-300">
@@ -63,7 +81,7 @@ const faqs = [
                                 </svg>
                             </span>
                         </button>
-                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out">
+                        <div id={`faq-answer-${index}`} class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out" role="region" aria-hidden="true">
                             <p class="text-text-secondary leading-relaxed px-6 pb-6 md:px-8 md:pb-8 pt-0">
                                 {faq.answer}
                             </p>
@@ -74,6 +92,9 @@ const faqs = [
         </div>
     </div>
 </section>
+
+<!-- FAQ Structured Data -->
+<script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
 
 <script is:inline>
     function toggleFaq(button) {
@@ -86,6 +107,7 @@ const faqs = [
 
         if (!isExpanded) {
             content.style.maxHeight = content.scrollHeight + "px";
+            content.setAttribute("aria-hidden", "false");
             icon.style.transform = "rotate(180deg)";
             const item = button.closest(".faq-item");
             item.classList.add(
@@ -97,6 +119,7 @@ const faqs = [
             item.classList.remove("border-separator/50");
         } else {
             content.style.maxHeight = "0";
+            content.setAttribute("aria-hidden", "true");
             icon.style.transform = "rotate(0deg)";
             const item = button.closest(".faq-item");
             item.classList.remove(

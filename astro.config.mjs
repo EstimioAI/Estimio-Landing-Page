@@ -5,11 +5,14 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://estimio.ai',
   vite: {
     plugins: [tailwindcss()],
     build: {
       // Enable CSS minification
       cssMinify: true,
+      // Minify JavaScript
+      minify: 'terser',
       // Optimize chunk splitting for better caching
       rollupOptions: {
         output: {
@@ -29,5 +32,9 @@ export default defineConfig({
     defaultStrategy: 'viewport'
   },
   // Compress HTML output
-  compressHTML: true
+  compressHTML: true,
+  // Build optimizations
+  build: {
+    inlineStylesheets: 'auto'
+  }
 });
