@@ -25,7 +25,7 @@ const appStoreUrl =
           <img
             src="/assets/screenshots/estimio-logo-text.png"
             alt="Estimio"
-            class="h-9 w-auto"
+            class="logo-nav h-5 sm:h-6 md:h-9 w-auto"
             width="120"
             height="36"
             loading="eager"
@@ -203,6 +203,23 @@ const appStoreUrl =
 
   .nav-container {
     transition: all 0.4s var(--ease-out-expo);
+  }
+
+  /* Logo sizing - override global img rule */
+  .logo-nav {
+    height: 1.75rem !important; /* h-7 = 28px */
+  }
+
+  @media (min-width: 640px) {
+    .logo-nav {
+      height: 2rem !important; /* h-8 = 32px */
+    }
+  }
+
+  @media (min-width: 768px) {
+    .logo-nav {
+      height: 2.25rem !important; /* h-9 = 36px */
+    }
   }
 
   /* Active link indicator */
