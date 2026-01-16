@@ -214,10 +214,13 @@ html.lenis, html.lenis body {
 }
 
 /* GSAP animation utilities - initial states set via JS for reliability */
-.gsap-fade-up,
-.gsap-fade-in,
-.gsap-scale-in {
-  will-change: opacity, transform;
+/* Only apply will-change on desktop; it can cause memory issues on mobile */
+@media (min-width: 768px) {
+  .gsap-fade-up,
+  .gsap-fade-in,
+  .gsap-scale-in {
+    will-change: opacity, transform;
+  }
 }
 
 /* Button base styles */
@@ -268,18 +271,21 @@ html.lenis, html.lenis body {
 }
 
 /* Card hover effects - refined for premium feel */
+/* Disable hover transforms on touch devices for performance */
 .card-hover {
   transition:
     transform var(--duration-normal) var(--ease-out-quint),
     box-shadow var(--duration-normal) var(--ease-out-quint);
 }
 
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 12px 24px -4px rgba(0, 0, 0, 0.08),
-    0 24px 48px -8px rgba(0, 0, 0, 0.06);
+@media (hover: hover) and (pointer: fine) {
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.05),
+      0 12px 24px -4px rgba(0, 0, 0, 0.08),
+      0 24px 48px -8px rgba(0, 0, 0, 0.06);
+  }
 }
 
 /* Feature card specific hover */
@@ -290,12 +296,14 @@ html.lenis, html.lenis body {
     border-color var(--duration-normal) var(--ease-out-quint);
 }
 
-.feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 4px 6px -1px rgba(0, 122, 255, 0.03),
-    0 10px 20px -5px rgba(0, 122, 255, 0.08),
-    0 20px 40px -10px rgba(0, 0, 0, 0.06);
+@media (hover: hover) and (pointer: fine) {
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 122, 255, 0.03),
+      0 10px 20px -5px rgba(0, 122, 255, 0.08),
+      0 20px 40px -10px rgba(0, 0, 0, 0.06);
+  }
 }
 
 /* Section container */
@@ -417,9 +425,11 @@ a[target="_blank"].btn::after {
    SCROLL-TRIGGERED ANIMATION STATES
    ============================================ */
 
-/* Base states for scroll animations */
-[data-animate] {
-  will-change: opacity, transform;
+/* Base states for scroll animations - only apply will-change on desktop */
+@media (min-width: 768px) {
+  [data-animate] {
+    will-change: opacity, transform;
+  }
 }
 
 [data-animate="fade-up"] {
@@ -547,11 +557,14 @@ a[target="_blank"].btn::after {
     box-shadow var(--duration-normal) var(--ease-out-quint);
 }
 
-.testimonial-card:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.04),
-    0 10px 20px -5px rgba(0, 0, 0, 0.06);
+/* Only apply hover effects on devices with hover capability */
+@media (hover: hover) and (pointer: fine) {
+  .testimonial-card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.04),
+      0 10px 20px -5px rgba(0, 0, 0, 0.06);
+  }
 }
 
 /* ============================================
@@ -563,10 +576,12 @@ a[target="_blank"].btn::after {
   will-change: auto;
 }
 
-/* GPU acceleration for animated elements */
-.gpu-accelerated {
-  transform: translateZ(0);
-  backface-visibility: hidden;
+/* GPU acceleration for animated elements - desktop only */
+@media (min-width: 768px) {
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
 }
 
 /* Hide scrollbar for horizontal scroll containers */
@@ -577,4 +592,72 @@ a[target="_blank"].btn::after {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ============================================
+   MOBILE PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* Reduce blur effects on mobile - they are expensive */
+  .glass {
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+  }
+
+  .glass-card {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+
+  /* Disable expensive shimmer animation on mobile */
+  .shimmer-bg {
+    animation: none;
+    background: var(--color-primary);
+  }
+
+  /* Simpler shadows on mobile */
+  .btn-primary {
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.15);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.15);
+    transform: none;
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  /* Disable all hover transitions on mobile - touch doesn't need them */
+  .card-hover,
+  .feature-card,
+  .testimonial-card {
+    transition: none;
+  }
+
+  /* Reduce transform distances in CSS animations */
+  [data-animate="fade-up"] {
+    transform: translateY(8px);
+  }
+
+  [data-animate="scale-up"] {
+    transform: scale(0.98);
+  }
+
+  /* Optimize image reveal for mobile */
+  .img-reveal {
+    transform: none;
+    transition: opacity var(--duration-normal) var(--ease-out-quint);
+  }
+
+  /* Reduce section blur transition complexity */
+  .section-blur-transition::after {
+    display: none;
+  }
+
+  .section-shadow-top::before {
+    display: none;
+  }
 }

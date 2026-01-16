@@ -17,12 +17,17 @@ const EASE = {
   crisp: 'power4.out',
 } as const;
 
+// Mobile detection
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+const isTablet = typeof window !== 'undefined' && window.innerWidth >= 768 && window.innerWidth < 1024;
+
+// Mobile-optimized durations (faster = less processing)
 const DURATION = {
-  fast: 0.3,
-  medium: 0.5,
-  slow: 0.7,
-  heroStagger: 0.15,
-  sectionStagger: 0.1,
+  fast: isMobile ? 0.2 : 0.3,
+  medium: isMobile ? 0.3 : 0.5,
+  slow: isMobile ? 0.4 : 0.7,
+  heroStagger: isMobile ? 0.08 : 0.15,
+  sectionStagger: isMobile ? 0.05 : 0.1,
 } as const;
 
 // Reduced motion check
@@ -35,10 +40,12 @@ const prefersReducedMotion =
 // ============================================
 
 export function initLenis(): Lenis | null {
-  if (prefersReducedMotion) return null;
+  // Disable Lenis on mobile for better native scroll performance
+  // Mobile browsers have optimized native scrolling; Lenis adds overhead
+  if (prefersReducedMotion || isMobile) return null;
 
   const lenis = new Lenis({
-    duration: 1.0,
+    duration: isTablet ? 0.8 : 1.0,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
     wheelMultiplier: 0.9,
@@ -98,17 +105,24 @@ function animateHeroSequence(onComplete: () => void): void {
   const phoneGlow = howItWorksSection?.querySelector('.blur-\\[60px\\]');
   const stepCards = howItWorksSection?.querySelectorAll('.hiw-step-card');
 
-  // Set initial states - animate the nav container content, not the nav wrapper
-  if (navContainer) gsap.set(navContainer, { opacity: 0, y: -10 });
-  if (heroPill) gsap.set(heroPill, { opacity: 0, y: 16 });
-  if (heroHeadline) gsap.set(heroHeadline, { opacity: 0, y: 20 });
-  if (heroSubtext) gsap.set(heroSubtext, { opacity: 0, y: 16 });
-  if (heroCTA) gsap.set(heroCTA, { opacity: 0, y: 16 });
+  // Mobile-optimized: smaller transform distances = less GPU work
+  const yOffset = isMobile ? 12 : 16;
+  const yOffsetLarge = isMobile ? 16 : 20;
+  const phoneYOffset = isMobile ? 20 : 40;
+  const xOffset = isMobile ? 12 : 20;
 
-  // Phone and HowItWorks initial states
-  if (phoneImage) gsap.set(phoneImage, { opacity: 0, y: 40, scale: 0.95 });
-  if (phoneGlow) gsap.set(phoneGlow, { opacity: 0, scale: 0.8 });
-  if (stepCards) gsap.set(stepCards, { opacity: 0, x: -20 });
+  // Set initial states - animate the nav container content, not the nav wrapper
+  if (navContainer) gsap.set(navContainer, { opacity: 0, y: isMobile ? -6 : -10 });
+  if (heroPill) gsap.set(heroPill, { opacity: 0, y: yOffset });
+  if (heroHeadline) gsap.set(heroHeadline, { opacity: 0, y: yOffsetLarge });
+  if (heroSubtext) gsap.set(heroSubtext, { opacity: 0, y: yOffset });
+  if (heroCTA) gsap.set(heroCTA, { opacity: 0, y: yOffset });
+
+  // Phone and HowItWorks initial states - skip scale on mobile for performance
+  if (phoneImage) gsap.set(phoneImage, { opacity: 0, y: phoneYOffset, scale: isMobile ? 1 : 0.95 });
+  if (phoneGlow && !isMobile) gsap.set(phoneGlow, { opacity: 0, scale: 0.8 });
+  else if (phoneGlow) gsap.set(phoneGlow, { opacity: 0 }); // Skip scale animation on mobile
+  if (stepCards) gsap.set(stepCards, { opacity: 0, x: -xOffset });
 
   // Master timeline
   const tl = gsap.timeline({
@@ -142,8 +156,15 @@ function animateHeroSequence(onComplete: () => void): void {
   }
 
   // 3. Phone mockup rises up with glow (the hero moment)
+  // On mobile, skip scale animation for glow to reduce GPU work
   if (phoneGlow) {
-    tl.to(phoneGlow, { opacity: 1, scale: 1, duration: DURATION.slow }, '-=0.2');
+    tl.to(
+      phoneGlow,
+      isMobile
+        ? { opacity: 1, duration: DURATION.medium }
+        : { opacity: 1, scale: 1, duration: DURATION.slow },
+      '-=0.2'
+    );
   }
   if (phoneImage) {
     tl.to(
@@ -155,7 +176,7 @@ function animateHeroSequence(onComplete: () => void): void {
         duration: DURATION.slow,
         ease: EASE.crisp,
       },
-      '-=0.5'
+      isMobile ? '-=0.2' : '-=0.5' // Less overlap on mobile for smoother animation
     );
   }
 
@@ -180,6 +201,9 @@ function animateHeroSequence(onComplete: () => void): void {
 // ============================================
 
 function initScrollAnimations(): void {
+  // Mobile: reduced y offset for less GPU work
+  const scrollYOffset = isMobile ? 16 : 24;
+
   // Get sections that need scroll animations (skip hero and how-it-works)
   const sectionsToAnimate = ['features', 'testimonials'];
 
@@ -191,7 +215,7 @@ function initScrollAnimations(): void {
     if (elements.length === 0) return;
 
     // Set initial state
-    gsap.set(elements, { opacity: 0, y: 24 });
+    gsap.set(elements, { opacity: 0, y: scrollYOffset });
 
     ScrollTrigger.create({
       trigger: section,
@@ -216,7 +240,7 @@ function initScrollAnimations(): void {
   const faqSection = document.getElementById('faq');
   if (faqSection) {
     const faqElements = faqSection.querySelectorAll<HTMLElement>('.gsap-fade-up');
-    gsap.set(faqElements, { opacity: 0, y: 24 });
+    gsap.set(faqElements, { opacity: 0, y: scrollYOffset });
 
     ScrollTrigger.create({
       trigger: faqSection,
@@ -234,10 +258,10 @@ function initScrollAnimations(): void {
     });
   }
 
-  // Footer CTA - scale in animation
+  // Footer CTA - scale in animation (skip scale on mobile)
   const footerCTA = document.querySelector<HTMLElement>('.gsap-scale-in');
   if (footerCTA) {
-    gsap.set(footerCTA, { opacity: 0, scale: 0.96, y: 20 });
+    gsap.set(footerCTA, { opacity: 0, scale: isMobile ? 1 : 0.96, y: isMobile ? 12 : 20 });
 
     ScrollTrigger.create({
       trigger: footerCTA,
@@ -278,7 +302,9 @@ export function initImageReveal(): void {
 // ============================================
 
 export function initMicroParallax(): void {
-  if (prefersReducedMotion) return;
+  // Completely disable parallax on mobile and tablets - it's expensive
+  // The scrub animation triggers on every scroll event which kills mobile performance
+  if (prefersReducedMotion || isMobile || isTablet) return;
 
   const parallaxElements = document.querySelectorAll<HTMLElement>('[data-parallax]');
 

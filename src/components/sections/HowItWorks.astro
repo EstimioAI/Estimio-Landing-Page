@@ -117,7 +117,7 @@ const steps = [
                 steps.map((step, index) => (
                   <img
                     src={step.image}
-                    alt={step.title}
+                    alt={`Estimio app - ${step.title}`}
                     data-step={step.number}
                     class:list={[
                       "hiw-phone-image",
@@ -129,6 +129,8 @@ const steps = [
                     style="transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);"
                     width="360"
                     height="740"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    decoding="async"
                   />
                 ))
               }
