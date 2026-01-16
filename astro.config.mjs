@@ -11,8 +11,8 @@ export default defineConfig({
     build: {
       // Enable CSS minification
       cssMinify: true,
-      // Minify JavaScript
-      minify: 'terser',
+      // Use esbuild for minification (faster and built-in, no extra dependencies)
+      minify: 'esbuild',
       // Optimize chunk splitting for better caching
       rollupOptions: {
         output: {
