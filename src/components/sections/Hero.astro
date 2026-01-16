@@ -3,15 +3,11 @@ const appStoreUrl =
   "https://apps.apple.com/us/app/estimio-ai-estimates/id6746227498";
 ---
 
-<section class="relative overflow-hidden pt-20 md:pt-24">
+<section class="relative overflow-hidden pt-20 md:pt-24" style="padding-top: max(env(safe-area-inset-top), 5rem);">
   <!-- Background: White to blue gradient with grid -->
   <div
     class="absolute inset-0 bg-gradient-to-b from-[#C5DFFF] via-[#E8F4FF] to-white"
-  >
-  </div>
-  <!-- White gradient overlay at top for smooth transition -->
-  <div
-    class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent pointer-events-none"
+    style="top: calc(-1 * env(safe-area-inset-top));"
   >
   </div>
   <div
