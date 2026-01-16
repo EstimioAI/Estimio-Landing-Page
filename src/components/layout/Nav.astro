@@ -13,12 +13,12 @@ const appStoreUrl =
 <header>
   <nav
     id="nav"
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-4"
+    class="fixed top-0 left-0 right-0 z-50 pt-4"
     aria-label="Main navigation"
   >
     <div class="section-container">
       <div
-        class="nav-container glass rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-300"
+        class="nav-container glass rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between"
       >
         <!-- Logo -->
         <a href="/" class="flex items-center group" aria-label="Estimio - Home">
@@ -139,27 +139,6 @@ const appStoreUrl =
   const mobileMenu = document.getElementById("mobile-menu");
   const hamburgerLines = document.querySelectorAll(".hamburger-line");
 
-  // Scroll effect
-  let ticking = false;
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          if (scrollY > 20) {
-            nav?.classList.add("scrolled");
-          } else {
-            nav?.classList.remove("scrolled");
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    },
-    { passive: true },
-  );
-
   // Mobile menu toggle
   function toggleMenu(open: boolean) {
     if (open) {
@@ -215,16 +194,15 @@ const appStoreUrl =
 </script>
 
 <style>
-  /* Nav scroll state */
-  #nav.scrolled {
-    padding-top: 0.5rem;
+  /* Navbar specific refinements */
+  #nav {
+    transition:
+      transform 0.4s var(--ease-out-expo),
+      padding 0.4s var(--ease-out-expo);
   }
 
-  #nav.scrolled .nav-container {
-    box-shadow:
-      0 4px 20px rgba(0, 0, 0, 0.08),
-      0 0 0 1px rgba(0, 0, 0, 0.04);
-    background: rgba(255, 255, 255, 0.9);
+  .nav-container {
+    transition: all 0.4s var(--ease-out-expo);
   }
 
   /* Active link indicator */
@@ -242,5 +220,19 @@ const appStoreUrl =
     height: 4px;
     border-radius: 50%;
     background: var(--color-primary);
+  }
+
+  /* Hover state for links */
+  .nav-link:not(.active):hover::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    opacity: 0.4;
   }
 </style>

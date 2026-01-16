@@ -99,7 +99,7 @@ const steps = [
                     data-step={step.number}
                     class:list={[
                       "hiw-phone-image-desktop",
-                      "w-full drop-shadow-2xl rounded-[2rem]",
+                      "w-full md:drop-shadow-2xl rounded-[2rem]",
                       index === 0
                         ? "relative opacity-100"
                         : "absolute inset-0 opacity-0",
@@ -141,7 +141,7 @@ const steps = [
                       <img
                         src={step.image}
                         alt={`Estimio app - ${step.title}`}
-                        class="w-full drop-shadow-2xl rounded-[2rem]"
+                        class="w-full md:drop-shadow-2xl rounded-[2rem]"
                         width="360"
                         height="740"
                         loading={index === 0 ? "eager" : "lazy"}
@@ -267,8 +267,11 @@ const steps = [
     let currentIndex = 0;
     const totalSteps = 4;
     let startX = 0;
+    let startY = 0;
     let currentX = 0;
+    let currentY = 0;
     let isDragging = false;
+    let isHorizontalSwipe = false;
     let startTranslate = 0;
 
     function updateCarousel(index: number, animate = true) {
@@ -308,7 +311,9 @@ const steps = [
 
     function handleDragStart(e: TouchEvent | MouseEvent) {
       isDragging = true;
+      isHorizontalSwipe = false;
       startX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      startY = 'touches' in e ? e.touches[0].clientY : e.clientY;
       startTranslate = -currentIndex * 100;
       phoneTrack.style.transition = "none";
       descTrack.style.transition = "none";
@@ -316,12 +321,28 @@ const steps = [
 
     function handleDragMove(e: TouchEvent | MouseEvent) {
       if (!isDragging) return;
-      e.preventDefault();
 
       currentX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const diff = currentX - startX;
+      currentY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
+      const diffX = currentX - startX;
+      const diffY = currentY - startY;
+
+      // Determine swipe direction on first significant movement
+      if (!isHorizontalSwipe && (Math.abs(diffX) > 10 || Math.abs(diffY) > 10)) {
+        isHorizontalSwipe = Math.abs(diffX) > Math.abs(diffY);
+      }
+
+      // Only handle horizontal swipes, allow vertical scrolling
+      if (!isHorizontalSwipe) {
+        return;
+      }
+
+      // Prevent default only for horizontal swipes
+      e.preventDefault();
+
       const containerWidth = phoneCarousel.offsetWidth;
-      const percentageMoved = (diff / containerWidth) * 100;
+      const percentageMoved = (diffX / containerWidth) * 100;
       const newTranslate = startTranslate + percentageMoved;
 
       // Add resistance at edges
@@ -336,6 +357,11 @@ const steps = [
     function handleDragEnd() {
       if (!isDragging) return;
       isDragging = false;
+
+      // Only process if it was a horizontal swipe
+      if (!isHorizontalSwipe) {
+        return;
+      }
 
       const diff = currentX - startX;
       const threshold = 50; // Minimum drag distance to trigger slide
