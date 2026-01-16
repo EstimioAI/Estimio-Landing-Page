@@ -110,25 +110,9 @@
   top: 0;
 }
 
-/* Smooth scroll from Lenis */
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
+/* Native smooth scroll - no Lenis overhead */
+html {
+  scroll-behavior: smooth;
 }
 
 /* Reduced motion support */
@@ -161,19 +145,17 @@ html.lenis, html.lenis body {
   background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233D3D3D' fill-opacity='0.02' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 5v1zm1 5v1H5zM0 0h1v1z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* Glass morphism effect */
+/* Simplified glass effect - no backdrop blur for performance */
 .glass {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .glass-card {
   background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 /* Shimmer animation for CTA */
@@ -213,14 +195,55 @@ html.lenis, html.lenis body {
   }
 }
 
-/* GSAP animation utilities - initial states set via JS for reliability */
-/* Only apply will-change on desktop; it can cause memory issues on mobile */
-@media (min-width: 768px) {
-  .gsap-fade-up,
-  .gsap-fade-in,
-  .gsap-scale-in {
-    will-change: opacity, transform;
+/* ============================================
+   LIGHTWEIGHT CSS ANIMATIONS (replaces GSAP)
+   ============================================ */
+
+/* Fade in animation */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
   }
+}
+
+/* Fade up animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scale in animation */
+.scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Visible state for scroll-triggered animations */
+.fade-in.is-visible,
+.fade-up.is-visible,
+.scale-in.is-visible {
+  animation-play-state: running;
 }
 
 /* Button base styles */
@@ -425,69 +448,49 @@ a[target="_blank"].btn::after {
    SCROLL-TRIGGERED ANIMATION STATES
    ============================================ */
 
-/* Base states for scroll animations - only apply will-change on desktop */
-@media (min-width: 768px) {
-  [data-animate] {
-    will-change: opacity, transform;
-  }
-}
-
 [data-animate="fade-up"] {
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 [data-animate="fade-up"].is-visible {
   opacity: 1;
   transform: translateY(0);
-  transition:
-    opacity var(--duration-slow) var(--ease-out-quint),
-    transform var(--duration-slow) var(--ease-out-quint);
 }
 
 [data-animate="fade-in"] {
   opacity: 0;
+  transition: opacity 0.5s ease-out;
 }
 
 [data-animate="fade-in"].is-visible {
   opacity: 1;
-  transition: opacity var(--duration-slow) var(--ease-out-quint);
 }
 
 [data-animate="scale-up"] {
   opacity: 0;
-  transform: scale(0.96);
+  transform: scale(0.95);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 [data-animate="scale-up"].is-visible {
   opacity: 1;
   transform: scale(1);
-  transition:
-    opacity var(--duration-slow) var(--ease-out-quint),
-    transform var(--duration-slow) var(--ease-out-quint);
 }
 
-/* Stagger delays via CSS custom property */
-[data-animate-delay="1"] { transition-delay: 60ms; }
-[data-animate-delay="2"] { transition-delay: 120ms; }
-[data-animate-delay="3"] { transition-delay: 180ms; }
-[data-animate-delay="4"] { transition-delay: 240ms; }
-[data-animate-delay="5"] { transition-delay: 300ms; }
-[data-animate-delay="6"] { transition-delay: 360ms; }
+/* Stagger delays */
+[data-animate-delay="1"].is-visible { transition-delay: 0.05s; }
+[data-animate-delay="2"].is-visible { transition-delay: 0.1s; }
+[data-animate-delay="3"].is-visible { transition-delay: 0.15s; }
+[data-animate-delay="4"].is-visible { transition-delay: 0.2s; }
+[data-animate-delay="5"].is-visible { transition-delay: 0.25s; }
+[data-animate-delay="6"].is-visible { transition-delay: 0.3s; }
 
 /* ============================================
-   MICRO-PARALLAX
+   PARALLAX - REMOVED FOR PERFORMANCE
    ============================================ */
-
-.parallax-slow {
-  will-change: transform;
-  transition: transform 0.1s linear;
-}
-
-.parallax-medium {
-  will-change: transform;
-  transition: transform 0.08s linear;
-}
+/* Parallax effects removed - they hurt mobile performance */
 
 /* ============================================
    ENHANCED BUTTON STATES
@@ -571,17 +574,10 @@ a[target="_blank"].btn::after {
    PERFORMANCE OPTIMIZATIONS
    ============================================ */
 
-/* Remove will-change after animation completes */
-.animation-complete {
-  will-change: auto;
-}
-
-/* GPU acceleration for animated elements - desktop only */
-@media (min-width: 768px) {
-  .gpu-accelerated {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
+/* Minimal GPU usage - only for transforms */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Hide scrollbar for horizontal scroll containers */
@@ -599,18 +595,13 @@ a[target="_blank"].btn::after {
    ============================================ */
 
 @media (max-width: 767px) {
-  /* Reduce blur effects on mobile - they are expensive */
-  .glass {
-    backdrop-filter: blur(10px) saturate(150%);
-    -webkit-backdrop-filter: blur(10px) saturate(150%);
-  }
-
+  /* No blur effects on mobile - too expensive */
+  .glass,
   .glass-card {
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.95);
   }
 
-  /* Disable expensive shimmer animation on mobile */
+  /* Disable shimmer animation on mobile */
   .shimmer-bg {
     animation: none;
     background: var(--color-primary);
@@ -630,33 +621,33 @@ a[target="_blank"].btn::after {
     transform: scale(0.98);
   }
 
-  /* Disable all hover transitions on mobile - touch doesn't need them */
+  /* Disable hover transitions on mobile */
   .card-hover,
   .feature-card,
   .testimonial-card {
     transition: none;
   }
 
-  /* Reduce transform distances in CSS animations */
+  /* Faster animations on mobile */
+  .fade-in,
+  .fade-up,
+  .scale-in {
+    animation-duration: 0.4s;
+  }
+
+  /* Reduce transform distances */
   [data-animate="fade-up"] {
-    transform: translateY(8px);
+    transform: translateY(12px);
   }
 
-  [data-animate="scale-up"] {
-    transform: scale(0.98);
-  }
-
-  /* Optimize image reveal for mobile */
+  /* Optimize image reveal */
   .img-reveal {
     transform: none;
-    transition: opacity var(--duration-normal) var(--ease-out-quint);
+    transition: opacity 0.3s ease-out;
   }
 
-  /* Reduce section blur transition complexity */
-  .section-blur-transition::after {
-    display: none;
-  }
-
+  /* Remove decorative elements */
+  .section-blur-transition::after,
   .section-shadow-top::before {
     display: none;
   }

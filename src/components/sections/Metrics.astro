@@ -35,7 +35,7 @@ const metrics = [
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
         {
           metrics.map((metric, index) => (
-            <div class="gsap-fade-up" style={`--delay: ${index * 0.1}s`}>
+            <div class="fade-up" style={`--delay: ${index * 0.1}s`}>
               <MetricCard
                 {...metric}
                 class="!bg-white border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300"

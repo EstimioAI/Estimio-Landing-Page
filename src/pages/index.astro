@@ -28,32 +28,16 @@ import FooterCTA from "../components/sections/FooterCTA.astro";
 
 <script>
   import {
-    initLenis,
     initPageLoadSequence,
     initImageReveal,
-    initMicroParallax,
-    cleanup,
   } from "../lib/animations";
 
   // Initialize on DOM ready
   document.addEventListener("DOMContentLoaded", () => {
-    // Initialize Lenis smooth scroll
-    const lenis = initLenis();
-
-    // Run the full page load animation sequence
-    // Sequence: Nav → Hero content → Phone mockup → Step cards → then scroll triggers
+    // Run simple page load animation sequence
     initPageLoadSequence();
 
     // Initialize image reveal animations
     initImageReveal();
-
-    // Initialize micro-parallax for depth
-    initMicroParallax();
-
-    // Cleanup on page unload
-    window.addEventListener("beforeunload", () => {
-      cleanup();
-      lenis?.destroy();
-    });
   });
 </script>

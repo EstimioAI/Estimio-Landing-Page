@@ -24,7 +24,7 @@ const metricsRight = [
         <!-- Left Metrics -->
         <div class="absolute left-[5%] xl:left-[10%] flex flex-col gap-8 z-10">
           {metricsLeft.map((metric, index) => (
-            <MetricCard {...metric} class="gsap-fade-up" style={`--delay: ${index * 0.1}s`} />
+            <MetricCard {...metric} class="fade-up" style={`--delay: ${index * 0.1}s`} />
           ))}
         </div>
 
@@ -35,7 +35,7 @@ const metricsRight = [
             id="hero-phone"
             src="/assets/screenshots/Hero Image Middle.png"
             alt="Estimio app showing a master bathroom renovation estimate"
-            class="relative w-[320px] xl:w-[360px] drop-shadow-2xl gsap-scale-in"
+            class="relative w-[320px] xl:w-[360px] drop-shadow-2xl scale-in"
             width="360"
             height="740"
           />
@@ -44,7 +44,7 @@ const metricsRight = [
         <!-- Right Metrics -->
         <div class="absolute right-[5%] xl:right-[10%] flex flex-col gap-8 z-10">
           {metricsRight.map((metric, index) => (
-            <MetricCard {...metric} class="gsap-fade-up" style={`--delay: ${(index + 2) * 0.1}s`} />
+            <MetricCard {...metric} class="fade-up" style={`--delay: ${(index + 2) * 0.1}s`} />
           ))}
         </div>
       </div>
@@ -58,7 +58,7 @@ const metricsRight = [
         <img
           src="/assets/screenshots/Hero Image Middle.png"
           alt="Estimio app showing a master bathroom renovation estimate"
-          class="relative w-[280px] drop-shadow-2xl gsap-scale-in"
+          class="relative w-[280px] drop-shadow-2xl scale-in"
           width="280"
           height="574"
         />
@@ -67,7 +67,7 @@ const metricsRight = [
       <!-- Metrics Grid -->
       <div class="grid grid-cols-2 gap-4 flex-1">
         {[...metricsLeft, ...metricsRight].map((metric, index) => (
-          <MetricCard {...metric} floatClass="" class="gsap-fade-up" />
+          <MetricCard {...metric} floatClass="" class="fade-up" />
         ))}
       </div>
     </div>
@@ -80,7 +80,7 @@ const metricsRight = [
         <img
           src="/assets/screenshots/Hero Image Middle.png"
           alt="Estimio app showing a master bathroom renovation estimate"
-          class="relative w-[260px] drop-shadow-xl gsap-scale-in"
+          class="relative w-[260px] drop-shadow-xl scale-in"
           width="260"
           height="533"
         />
@@ -89,7 +89,7 @@ const metricsRight = [
       <!-- Metrics in 2x2 grid -->
       <div class="grid grid-cols-2 gap-3 px-2">
         {[...metricsLeft, ...metricsRight].map((metric, index) => (
-          <MetricCard {...metric} floatClass="" class="gsap-fade-up" compact />
+          <MetricCard {...metric} floatClass="" class="fade-up" compact />
         ))}
       </div>
     </div>

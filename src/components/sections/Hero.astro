@@ -3,25 +3,21 @@ const appStoreUrl =
   "https://apps.apple.com/us/app/estimio-ai-estimates/id6746227498";
 ---
 
-<section class="relative overflow-hidden -mt-20 pt-20">
+<section class="relative overflow-hidden pt-32 md:pt-20">
   <!-- Background: White to blue gradient with grid -->
   <div
     class="absolute inset-0 bg-gradient-to-b from-[#C5DFFF] via-[#E8F4FF] to-white"
-    data-parallax="0.3"
-    data-parallax-direction="down"
   >
   </div>
   <div
     class="absolute inset-0 grid-pattern"
     style="mask-image: linear-gradient(to bottom, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);"
-    data-parallax="0.15"
   >
   </div>
 
   <!-- Subtle ambient glow - very restrained -->
   <div
-    class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"
-    data-parallax="0.2"
+    class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/5 rounded-full blur-[60px] pointer-events-none"
     aria-hidden="true"
   >
   </div>
@@ -30,7 +26,7 @@ const appStoreUrl =
     <!-- Audience Pill -->
     <div class="text-center">
       <div
-        class="gsap-fade-up inline-flex items-center gap-3 px-5 py-2 rounded-full backdrop-blur-sm bg-white/40 border border-white/40 shadow-sm text-text-primary mb-8 md:mb-10"
+        class="fade-in inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/80 border border-white/60 shadow-sm text-text-primary mb-8 md:mb-10"
       >
         <span class="text-text-primary font-medium text-sm">Contractors</span>
         <span class="w-1 h-1 rounded-full bg-primary/40"></span>
@@ -42,7 +38,7 @@ const appStoreUrl =
 
     <!-- Headline -->
     <h1
-      class="gsap-fade-up text-center text-[2.5rem] md:text-6xl lg:text-7xl xl:text-[5rem] font-semibold text-text-primary tracking-[-0.02em] leading-[1.1] max-w-4xl mx-auto mb-6"
+      class="fade-in text-center text-[2.5rem] md:text-6xl lg:text-7xl xl:text-[5rem] font-semibold text-text-primary tracking-[-0.02em] leading-[1.1] max-w-4xl mx-auto mb-6"
     >
       Win More Jobs with
       <br />
@@ -51,14 +47,14 @@ const appStoreUrl =
 
     <!-- Subheadline -->
     <p
-      class="gsap-fade-up text-center text-base md:text-lg lg:text-xl text-text-secondary max-w-2xl mx-auto mb-6 md:mb-8 leading-relaxed"
+      class="fade-in text-center text-base md:text-lg lg:text-xl text-text-secondary max-w-2xl mx-auto mb-6 md:mb-8 leading-relaxed"
     >
       Turn descriptions into professional, accurate proposals in seconds.
     </p>
 
     <!-- CTA Section -->
     <div
-      class="gsap-fade-up flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 md:mb-16"
+      class="fade-in flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 md:mb-16"
     >
       <!-- Get the App Button -->
       <a
