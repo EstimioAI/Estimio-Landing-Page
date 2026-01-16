@@ -199,51 +199,64 @@ html {
    LIGHTWEIGHT CSS ANIMATIONS (replaces GSAP)
    ============================================ */
 
-/* Fade in animation */
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 0.6s ease-out forwards;
-}
+/* Fade in animation - disabled on mobile */
+@media (min-width: 768px) {
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Fade up animation */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Scale in animation */
+  .scale-in {
+    opacity: 0;
+    transform: scale(0.95);
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+
+  @keyframes scaleIn {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Visible state for scroll-triggered animations */
+  .fade-in.is-visible,
+  .fade-up.is-visible,
+  .scale-in.is-visible {
+    animation-play-state: running;
   }
 }
 
-/* Fade up animation */
-.fade-up {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.6s ease-out forwards;
-}
-
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+/* On mobile, show immediately without animation */
+@media (max-width: 767px) {
+  .fade-in,
+  .fade-up,
+  .scale-in {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
-}
-
-/* Scale in animation */
-.scale-in {
-  opacity: 0;
-  transform: scale(0.95);
-  animation: scaleIn 0.6s ease-out forwards;
-}
-
-@keyframes scaleIn {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Visible state for scroll-triggered animations */
-.fade-in.is-visible,
-.fade-up.is-visible,
-.scale-in.is-visible {
-  animation-play-state: running;
 }
 
 /* Button base styles */
@@ -448,44 +461,57 @@ a[target="_blank"].btn::after {
    SCROLL-TRIGGERED ANIMATION STATES
    ============================================ */
 
-[data-animate="fade-up"] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+/* Disable scroll animations on mobile to prevent white loaders */
+@media (min-width: 768px) {
+  [data-animate="fade-up"] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  [data-animate="fade-up"].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-animate="fade-in"] {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+
+  [data-animate="fade-in"].is-visible {
+    opacity: 1;
+  }
+
+  [data-animate="scale-up"] {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  [data-animate="scale-up"].is-visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Stagger delays */
+  [data-animate-delay="1"].is-visible { transition-delay: 0.05s; }
+  [data-animate-delay="2"].is-visible { transition-delay: 0.1s; }
+  [data-animate-delay="3"].is-visible { transition-delay: 0.15s; }
+  [data-animate-delay="4"].is-visible { transition-delay: 0.2s; }
+  [data-animate-delay="5"].is-visible { transition-delay: 0.25s; }
+  [data-animate-delay="6"].is-visible { transition-delay: 0.3s; }
 }
 
-[data-animate="fade-up"].is-visible {
-  opacity: 1;
-  transform: translateY(0);
+/* On mobile, show all elements immediately */
+@media (max-width: 767px) {
+  [data-animate="fade-up"],
+  [data-animate="fade-in"],
+  [data-animate="scale-up"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
-
-[data-animate="fade-in"] {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-}
-
-[data-animate="fade-in"].is-visible {
-  opacity: 1;
-}
-
-[data-animate="scale-up"] {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-[data-animate="scale-up"].is-visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Stagger delays */
-[data-animate-delay="1"].is-visible { transition-delay: 0.05s; }
-[data-animate-delay="2"].is-visible { transition-delay: 0.1s; }
-[data-animate-delay="3"].is-visible { transition-delay: 0.15s; }
-[data-animate-delay="4"].is-visible { transition-delay: 0.2s; }
-[data-animate-delay="5"].is-visible { transition-delay: 0.25s; }
-[data-animate-delay="6"].is-visible { transition-delay: 0.3s; }
 
 /* ============================================
    PARALLAX - REMOVED FOR PERFORMANCE

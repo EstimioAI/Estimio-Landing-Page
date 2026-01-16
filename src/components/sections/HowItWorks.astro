@@ -36,17 +36,14 @@ const steps = [
   class="pt-0 pb-12 md:pb-20 lg:pb-24 bg-white scroll-mt-20"
 >
   <div class="section-container">
-    <!-- Section Header Removed for seamless transition -->
-
-    <!-- Interactive Layout -->
-    <div class="max-w-6xl mx-auto px-4">
+    <!-- Desktop Layout -->
+    <div class="hidden lg:block max-w-6xl mx-auto px-4">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         <!-- Left: Step Cards -->
         <div class="relative flex flex-col order-2 lg:order-1 min-w-0">
-          <!-- Steps Container -->
           <div
-            id="hiw-steps-container"
-            class="flex flex-row lg:flex-col gap-4 overflow-x-auto lg:overflow-visible snap-x snap-mandatory py-4 -mx-4 px-4 lg:p-0 lg:m-0 no-scrollbar"
+            id="hiw-steps-container-desktop"
+            class="flex flex-col gap-4"
           >
             {
               steps.map((step, index) => (
@@ -55,10 +52,9 @@ const steps = [
                   data-step={step.number}
                   data-image={step.image}
                   class:list={[
-                    "hiw-step-card",
-                    "fade-up",
+                    "hiw-step-card-desktop",
                     "text-left p-5 md:p-6 rounded-2xl border-2 transition-all duration-300 cursor-pointer relative z-10",
-                    "min-w-[85vw] sm:min-w-[380px] lg:min-w-0 lg:w-full snap-center",
+                    "w-full",
                     "hover:border-primary",
                     index === 0
                       ? "bg-primary/5 border-primary shadow-lg shadow-primary/10"
@@ -69,7 +65,6 @@ const steps = [
                   <div class="flex items-start gap-4">
                     <span
                       class:list={[
-                        "hiw-step-number",
                         "text-3xl md:text-4xl font-bold shrink-0",
                         "bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary/60",
                       ]}
@@ -77,20 +72,10 @@ const steps = [
                       0{step.number}
                     </span>
                     <div class="flex-1 min-w-0">
-                      <h3
-                        class:list={[
-                          "hiw-step-title",
-                          "text-lg md:text-xl font-semibold mb-1 text-text-primary",
-                        ]}
-                      >
+                      <h3 class="text-lg md:text-xl font-semibold mb-1 text-text-primary">
                         {step.title}
                       </h3>
-                      <p
-                        class:list={[
-                          "hiw-step-desc",
-                          "text-sm md:text-base leading-relaxed text-text-secondary",
-                        ]}
-                      >
+                      <p class="text-sm md:text-base leading-relaxed text-text-secondary">
                         {step.description}
                       </p>
                     </div>
@@ -103,16 +88,9 @@ const steps = [
 
         <!-- Right: Phone Image -->
         <div class="flex justify-center order-1 lg:order-2">
-          <div
-            class="relative w-[280px] sm:w-[320px] md:w-[340px] lg:w-[320px] xl:w-[360px]"
-          >
-            <!-- Glow effect -->
-            <div
-              class="absolute inset-0 bg-blue-500/20 blur-[60px] scale-95 translate-y-4 rounded-[3rem]"
-            >
-            </div>
+          <div class="relative w-[320px] xl:w-[360px]">
             <!-- Phone images container -->
-            <div id="hiw-phone-container" class="relative">
+            <div id="hiw-phone-container-desktop" class="relative">
               {
                 steps.map((step, index) => (
                   <img
@@ -120,13 +98,13 @@ const steps = [
                     alt={`Estimio app - ${step.title}`}
                     data-step={step.number}
                     class:list={[
-                      "hiw-phone-image",
+                      "hiw-phone-image-desktop",
                       "w-full drop-shadow-2xl rounded-[2rem]",
                       index === 0
                         ? "relative opacity-100"
                         : "absolute inset-0 opacity-0",
                     ]}
-                    style="transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);"
+                    style="transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);"
                     width="360"
                     height="740"
                     loading={index === 0 ? "eager" : "lazy"}
@@ -139,54 +117,123 @@ const steps = [
         </div>
       </div>
     </div>
+
+    <!-- Mobile Carousel Layout -->
+    <div class="lg:hidden max-w-6xl mx-auto">
+      <!-- Phone Image Carousel -->
+      <div class="relative w-full mb-8 overflow-hidden">
+        <div class="flex justify-center">
+          <div class="relative w-[280px] sm:w-[320px]">
+            <!-- Phone carousel -->
+            <div
+              id="hiw-phone-carousel"
+              class="relative overflow-hidden touch-pan-y"
+              style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;"
+            >
+              <div
+                id="hiw-phone-track"
+                class="flex transition-transform duration-300 ease-out"
+                style="transform: translateX(0%);"
+              >
+                {
+                  steps.map((step, index) => (
+                    <div class="flex-shrink-0 w-full">
+                      <img
+                        src={step.image}
+                        alt={`Estimio app - ${step.title}`}
+                        class="w-full drop-shadow-2xl rounded-[2rem]"
+                        width="360"
+                        height="740"
+                        loading={index === 0 ? "eager" : "lazy"}
+                        decoding="async"
+                      />
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Carousel -->
+      <div class="px-4">
+        <div
+          id="hiw-desc-carousel"
+          class="relative overflow-hidden"
+          style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;"
+        >
+          <div
+            id="hiw-desc-track"
+            class="flex transition-transform duration-300 ease-out"
+            style="transform: translateX(0%);"
+          >
+            {
+              steps.map((step) => (
+                <div class="flex-shrink-0 w-full px-2">
+                  <div class="text-center">
+                    <span class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary/60">
+                      0{step.number}
+                    </span>
+                    <h3 class="text-xl font-semibold mb-2 text-text-primary mt-2">
+                      {step.title}
+                    </h3>
+                    <p class="text-base leading-relaxed text-text-secondary">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Progress Indicators -->
+        <div class="flex justify-center gap-2 mt-6">
+          {
+            steps.map((step, index) => (
+              <button
+                type="button"
+                data-dot-index={index}
+                class:list={[
+                  "hiw-dot",
+                  "h-1.5 rounded-full transition-all duration-300",
+                  index === 0
+                    ? "w-8 bg-primary"
+                    : "w-1.5 bg-gray-300",
+                ]}
+                aria-label={`Go to step ${step.number}`}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <script>
-  function initHowItWorks() {
-    const stepCards =
-      document.querySelectorAll<HTMLButtonElement>(".hiw-step-card");
-    const phoneImages =
-      document.querySelectorAll<HTMLImageElement>(".hiw-phone-image");
+  // Desktop functionality
+  function initHowItWorksDesktop() {
+    const stepCards = document.querySelectorAll<HTMLButtonElement>(".hiw-step-card-desktop");
+    const phoneImages = document.querySelectorAll<HTMLImageElement>(".hiw-phone-image-desktop");
 
     if (stepCards.length === 0) return;
 
     function setActiveStep(stepNumber: number) {
-      // Update cards
       stepCards.forEach((card) => {
         const cardStep = parseInt(card.dataset.step || "1", 10);
         const isActive = cardStep === stepNumber;
 
-        // Update card styles (light blue bg for active, white bg for inactive)
         if (isActive) {
-          card.classList.remove(
-            "border-gray-200",
-            "bg-white",
-            "hover:bg-primary/5",
-          );
-          card.classList.add(
-            "border-primary",
-            "bg-primary/5",
-            "shadow-lg",
-            "shadow-primary/10",
-          );
+          card.classList.remove("border-gray-200", "bg-white", "hover:bg-primary/5");
+          card.classList.add("border-primary", "bg-primary/5", "shadow-lg", "shadow-primary/10");
         } else {
-          card.classList.remove(
-            "border-primary",
-            "bg-primary/5",
-            "shadow-lg",
-            "shadow-primary/10",
-          );
-          card.classList.add(
-            "border-gray-200",
-            "bg-white",
-            "hover:bg-primary/5",
-          );
+          card.classList.remove("border-primary", "bg-primary/5", "shadow-lg", "shadow-primary/10");
+          card.classList.add("border-gray-200", "bg-white", "hover:bg-primary/5");
         }
-        // Text colors remain unchanged (always dark)
       });
 
-      // Update phone images
       phoneImages.forEach((img) => {
         const imgStep = parseInt(img.dataset.step || "1", 10);
         if (imgStep === stepNumber) {
@@ -199,37 +246,178 @@ const steps = [
       });
     }
 
-    // Add click handlers
     stepCards.forEach((card) => {
       card.addEventListener("click", () => {
         const stepNumber = parseInt(card.dataset.step || "1", 10);
         setActiveStep(stepNumber);
       });
     });
+  }
 
-    // Add scroll observer for mobile swiper
-    const stepsContainer = document.getElementById("hiw-steps-container");
-    if (stepsContainer && window.matchMedia("(max-width: 1024px)").matches) {
-      const observerOptions = {
-        root: stepsContainer,
-        threshold: 0.6, // Trigger when 60% visible
-        rootMargin: "0px -20% 0px -20%", // Focus on center area
-      };
+  // Mobile carousel functionality
+  function initHowItWorksMobile() {
+    const phoneCarousel = document.getElementById("hiw-phone-carousel");
+    const descCarousel = document.getElementById("hiw-desc-carousel");
+    const phoneTrack = document.getElementById("hiw-phone-track") as HTMLElement | null;
+    const descTrack = document.getElementById("hiw-desc-track") as HTMLElement | null;
+    const dots = document.querySelectorAll<HTMLButtonElement>(".hiw-dot");
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const card = entry.target as HTMLElement;
-            const stepNumber = parseInt(card.dataset.step || "1", 10);
-            setActiveStep(stepNumber);
-          }
-        });
-      }, observerOptions);
+    if (!phoneCarousel || !descCarousel || !phoneTrack || !descTrack) return;
 
-      stepCards.forEach((card) => observer.observe(card));
+    let currentIndex = 0;
+    const totalSteps = 4;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    let startTranslate = 0;
+
+    function updateCarousel(index: number, animate = true) {
+      currentIndex = Math.max(0, Math.min(index, totalSteps - 1));
+      const translateX = -currentIndex * 100;
+
+      if (!animate) {
+        phoneTrack.style.transition = "none";
+        descTrack.style.transition = "none";
+      } else {
+        phoneTrack.style.transition = "transform 0.3s ease-out";
+        descTrack.style.transition = "transform 0.3s ease-out";
+      }
+
+      phoneTrack.style.transform = `translateX(${translateX}%)`;
+      descTrack.style.transform = `translateX(${translateX}%)`;
+
+      // Update dots
+      dots.forEach((dot, i) => {
+        if (i === currentIndex) {
+          dot.classList.remove("w-1.5", "bg-gray-300");
+          dot.classList.add("w-8", "bg-primary");
+        } else {
+          dot.classList.remove("w-8", "bg-primary");
+          dot.classList.add("w-1.5", "bg-gray-300");
+        }
+      });
+
+      // Re-enable transitions after update
+      if (!animate) {
+        setTimeout(() => {
+          phoneTrack.style.transition = "transform 0.3s ease-out";
+          descTrack.style.transition = "transform 0.3s ease-out";
+        }, 10);
+      }
     }
+
+    function handleDragStart(e: TouchEvent | MouseEvent) {
+      isDragging = true;
+      startX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      startTranslate = -currentIndex * 100;
+      phoneTrack.style.transition = "none";
+      descTrack.style.transition = "none";
+    }
+
+    function handleDragMove(e: TouchEvent | MouseEvent) {
+      if (!isDragging) return;
+      e.preventDefault();
+
+      currentX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const diff = currentX - startX;
+      const containerWidth = phoneCarousel.offsetWidth;
+      const percentageMoved = (diff / containerWidth) * 100;
+      const newTranslate = startTranslate + percentageMoved;
+
+      // Add resistance at edges
+      const maxTranslate = 0;
+      const minTranslate = -(totalSteps - 1) * 100;
+      const constrainedTranslate = Math.max(minTranslate, Math.min(maxTranslate, newTranslate));
+
+      phoneTrack.style.transform = `translateX(${constrainedTranslate}%)`;
+      descTrack.style.transform = `translateX(${constrainedTranslate}%)`;
+    }
+
+    function handleDragEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+
+      const diff = currentX - startX;
+      const threshold = 50; // Minimum drag distance to trigger slide
+
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0) {
+          // Dragged right - go to previous
+          updateCarousel(currentIndex - 1);
+        } else {
+          // Dragged left - go to next
+          updateCarousel(currentIndex + 1);
+        }
+      } else {
+        // Snap back to current
+        updateCarousel(currentIndex);
+      }
+    }
+
+    // Touch events for phone carousel
+    phoneCarousel.addEventListener("touchstart", handleDragStart, { passive: true });
+    phoneCarousel.addEventListener("touchmove", handleDragMove, { passive: false });
+    phoneCarousel.addEventListener("touchend", handleDragEnd, { passive: true });
+
+    // Touch events for description carousel
+    descCarousel.addEventListener("touchstart", handleDragStart, { passive: true });
+    descCarousel.addEventListener("touchmove", handleDragMove, { passive: false });
+    descCarousel.addEventListener("touchend", handleDragEnd, { passive: true });
+
+    // Mouse events (for desktop testing)
+    phoneCarousel.addEventListener("mousedown", handleDragStart);
+    descCarousel.addEventListener("mousedown", handleDragStart);
+    document.addEventListener("mousemove", handleDragMove);
+    document.addEventListener("mouseup", handleDragEnd);
+
+    // Dot click handlers
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        updateCarousel(index);
+      });
+    });
+
+    // Initialize
+    updateCarousel(0, false);
   }
 
   // Initialize on DOM ready
-  document.addEventListener("DOMContentLoaded", initHowItWorks);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      initHowItWorksDesktop();
+      initHowItWorksMobile();
+    });
+  } else {
+    initHowItWorksDesktop();
+    initHowItWorksMobile();
+  }
 </script>
+
+<style>
+  /* Prevent text selection during drag */
+  #hiw-phone-carousel,
+  #hiw-desc-carousel {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  /* Hardware acceleration */
+  #hiw-phone-track,
+  #hiw-desc-track {
+    will-change: transform;
+  }
+
+  /* Smooth touch scrolling */
+  #hiw-phone-carousel,
+  #hiw-desc-carousel {
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+  }
+
+  #hiw-phone-carousel:active,
+  #hiw-desc-carousel:active {
+    cursor: grabbing;
+  }
+</style>
