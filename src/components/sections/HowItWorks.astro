@@ -124,7 +124,19 @@ const steps = [
     <div class="lg:hidden max-w-6xl mx-auto">
       <!-- Phone Image Carousel -->
       <div class="relative w-full mb-8 overflow-hidden">
-        <div class="flex justify-center">
+        <div class="flex justify-center items-center">
+          <!-- Left Arrow -->
+          <button
+            type="button"
+            id="hiw-arrow-left"
+            class="hiw-arrow hidden absolute left-2 sm:left-4 z-10 w-10 h-10 rounded-full bg-white/90 shadow-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-white hover:text-primary transition-all duration-200 active:scale-95"
+            aria-label="Previous step"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
           <div class="relative w-[280px] sm:w-[320px]">
             <!-- Phone carousel -->
             <div
@@ -155,6 +167,18 @@ const steps = [
               </div>
             </div>
           </div>
+
+          <!-- Right Arrow -->
+          <button
+            type="button"
+            id="hiw-arrow-right"
+            class="hiw-arrow absolute right-2 sm:right-4 z-10 w-10 h-10 rounded-full bg-white/90 shadow-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-white hover:text-primary transition-all duration-200 active:scale-95"
+            aria-label="Next step"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -263,6 +287,8 @@ const steps = [
     const phoneTrack = document.getElementById("hiw-phone-track") as HTMLElement | null;
     const descTrack = document.getElementById("hiw-desc-track") as HTMLElement | null;
     const dots = document.querySelectorAll<HTMLButtonElement>(".hiw-dot");
+    const arrowLeft = document.getElementById("hiw-arrow-left") as HTMLButtonElement | null;
+    const arrowRight = document.getElementById("hiw-arrow-right") as HTMLButtonElement | null;
 
     if (!phoneCarousel || !descCarousel || !phoneTrack || !descTrack) return;
 
@@ -275,6 +301,25 @@ const steps = [
     let isDragging = false;
     let isHorizontalSwipe = false;
     let startTranslate = 0;
+
+    function updateArrows() {
+      if (arrowLeft) {
+        if (currentIndex === 0) {
+          arrowLeft.classList.add("hidden");
+        } else {
+          arrowLeft.classList.remove("hidden");
+          arrowLeft.classList.add("flex");
+        }
+      }
+      if (arrowRight) {
+        if (currentIndex === totalSteps - 1) {
+          arrowRight.classList.add("hidden");
+        } else {
+          arrowRight.classList.remove("hidden");
+          arrowRight.classList.add("flex");
+        }
+      }
+    }
 
     function updateCarousel(index: number, animate = true) {
       currentIndex = Math.max(0, Math.min(index, totalSteps - 1));
@@ -301,6 +346,9 @@ const steps = [
           dot.classList.add("w-1.5", "bg-gray-300");
         }
       });
+
+      // Update arrow visibility
+      updateArrows();
 
       // Re-enable transitions after update
       if (!animate) {
@@ -404,6 +452,22 @@ const steps = [
         updateCarousel(index);
       });
     });
+
+    // Arrow click handlers
+    if (arrowLeft) {
+      arrowLeft.addEventListener("click", () => {
+        if (currentIndex > 0) {
+          updateCarousel(currentIndex - 1);
+        }
+      });
+    }
+    if (arrowRight) {
+      arrowRight.addEventListener("click", () => {
+        if (currentIndex < totalSteps - 1) {
+          updateCarousel(currentIndex + 1);
+        }
+      });
+    }
 
     // Initialize
     updateCarousel(0, false);
