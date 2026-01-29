@@ -120,119 +120,80 @@ const steps = [
       </div>
     </div>
 
-    <!-- Mobile Carousel Layout -->
-    <div class="lg:hidden max-w-6xl mx-auto">
-      <!-- Phone Image Carousel -->
-      <div class="relative w-full mb-8 overflow-hidden">
-        <div class="flex justify-center items-center">
-          <!-- Left Arrow -->
-          <button
-            type="button"
-            id="hiw-arrow-left"
-            class="hiw-arrow hidden absolute left-2 sm:left-4 z-10 w-10 h-10 rounded-full bg-white/90 shadow-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-white hover:text-primary transition-all duration-200 active:scale-95"
-            aria-label="Previous step"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          <div class="relative w-[280px] sm:w-[320px]">
-            <!-- Phone carousel -->
-            <div
-              id="hiw-phone-carousel"
-              class="relative overflow-hidden touch-pan-y"
-              style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;"
-            >
+    <!-- Mobile Carousel Layout - Native Scroll Snap with Peek -->
+    <div class="lg:hidden">
+      <!-- Phone Image Carousel with Native Scroll -->
+      <div class="relative w-full mb-6">
+        <!-- Carousel Container with padding for peek effect -->
+        <div
+          id="hiw-carousel"
+          class="hiw-carousel flex overflow-x-auto snap-x snap-mandatory px-6"
+        >
+          {
+            steps.map((step, index) => (
               <div
-                id="hiw-phone-track"
-                class="flex transition-transform duration-300 ease-out"
-                style="transform: translateX(0%);"
+                class="hiw-slide flex-shrink-0 snap-center flex flex-col items-center"
+                data-index={index}
+                style="width: calc(100% - 48px);"
               >
-                {
-                  steps.map((step, index) => (
-                    <div class="flex-shrink-0 w-full">
-                      <img
-                        src={step.image}
-                        alt={`Estimio app - ${step.title}`}
-                        class="w-full md:drop-shadow-2xl rounded-[2rem]"
-                        width="360"
-                        height="740"
-                        loading={index === 0 ? "eager" : "lazy"}
-                        decoding="async"
-                      />
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
-          </div>
+                <!-- Phone Image -->
+                <div class="w-[260px] sm:w-[280px] mb-6 mx-auto">
+                  <img
+                    src={step.image}
+                    alt={`Estimio app - ${step.title}`}
+                    class="w-full rounded-[2rem]"
+                    width="360"
+                    height="740"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                  />
+                </div>
 
-          <!-- Right Arrow -->
-          <button
-            type="button"
-            id="hiw-arrow-right"
-            class="hiw-arrow absolute right-2 sm:right-4 z-10 w-10 h-10 rounded-full bg-white/90 shadow-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-white hover:text-primary transition-all duration-200 active:scale-95"
-            aria-label="Next step"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+                <!-- Description -->
+                <div class="text-center max-w-sm px-4">
+                  <span class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary/60">
+                    0{step.number}
+                  </span>
+                  <h3 class="text-xl font-semibold mb-2 text-text-primary mt-2">
+                    {step.title}
+                  </h3>
+                  <p class="text-base leading-relaxed text-text-secondary">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+          <!-- Spacer for last slide peek balance -->
+          <div class="flex-shrink-0 w-6" aria-hidden="true"></div>
         </div>
       </div>
 
-      <!-- Description Carousel -->
-      <div class="px-4">
-        <div
-          id="hiw-desc-carousel"
-          class="relative overflow-hidden"
-          style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;"
-        >
-          <div
-            id="hiw-desc-track"
-            class="flex transition-transform duration-300 ease-out"
-            style="transform: translateX(0%);"
-          >
-            {
-              steps.map((step) => (
-                <div class="flex-shrink-0 w-full px-2">
-                  <div class="text-center">
-                    <span class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary/60">
-                      0{step.number}
-                    </span>
-                    <h3 class="text-xl font-semibold mb-2 text-text-primary mt-2">
-                      {step.title}
-                    </h3>
-                    <p class="text-base leading-relaxed text-text-secondary">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <!-- Progress Indicators -->
-        <div class="flex justify-center gap-2 mt-6">
-          {
-            steps.map((step, index) => (
-              <button
-                type="button"
-                data-dot-index={index}
+      <!-- Progress Indicators - Larger tap targets -->
+      <div class="flex justify-center gap-3 mt-4">
+        {
+          steps.map((step, index) => (
+            <button
+              type="button"
+              data-dot-index={index}
+              class:list={[
+                "hiw-dot",
+                "relative h-11 flex items-center justify-center transition-all duration-200",
+                index === 0 ? "w-11" : "w-11",
+              ]}
+              aria-label={`Go to step ${step.number}`}
+            >
+              <span
                 class:list={[
-                  "hiw-dot",
-                  "h-1.5 rounded-full transition-all duration-300",
+                  "hiw-dot-inner block rounded-full transition-all duration-200",
                   index === 0
-                    ? "w-8 bg-primary"
-                    : "w-1.5 bg-gray-300",
+                    ? "w-8 h-2 bg-primary"
+                    : "w-2 h-2 bg-gray-300",
                 ]}
-                aria-label={`Go to step ${step.number}`}
               />
-            ))
-          }
-        </div>
+            </button>
+          ))
+        }
       </div>
     </div>
   </div>
@@ -280,197 +241,74 @@ const steps = [
     });
   }
 
-  // Mobile carousel functionality
+  // Mobile carousel functionality - Native scroll with Intersection Observer
   function initHowItWorksMobile() {
-    const phoneCarousel = document.getElementById("hiw-phone-carousel");
-    const descCarousel = document.getElementById("hiw-desc-carousel");
-    const phoneTrack = document.getElementById("hiw-phone-track") as HTMLElement | null;
-    const descTrack = document.getElementById("hiw-desc-track") as HTMLElement | null;
+    const carousel = document.getElementById("hiw-carousel");
+    const slides = document.querySelectorAll<HTMLElement>(".hiw-slide");
     const dots = document.querySelectorAll<HTMLButtonElement>(".hiw-dot");
-    const arrowLeft = document.getElementById("hiw-arrow-left") as HTMLButtonElement | null;
-    const arrowRight = document.getElementById("hiw-arrow-right") as HTMLButtonElement | null;
+    const dotInners = document.querySelectorAll<HTMLElement>(".hiw-dot-inner");
 
-    if (!phoneCarousel || !descCarousel || !phoneTrack || !descTrack) return;
+    if (!carousel || slides.length === 0) return;
 
     let currentIndex = 0;
-    const totalSteps = 4;
-    let startX = 0;
-    let startY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let isDragging = false;
-    let isHorizontalSwipe = false;
-    let startTranslate = 0;
 
-    function updateArrows() {
-      if (arrowLeft) {
-        if (currentIndex === 0) {
-          arrowLeft.classList.add("hidden");
+    // Update dot indicators
+    function updateDots(index: number) {
+      dotInners.forEach((inner, i) => {
+        if (i === index) {
+          inner.classList.remove("w-2", "h-2", "bg-gray-300");
+          inner.classList.add("w-8", "h-2", "bg-primary");
         } else {
-          arrowLeft.classList.remove("hidden");
-          arrowLeft.classList.add("flex");
-        }
-      }
-      if (arrowRight) {
-        if (currentIndex === totalSteps - 1) {
-          arrowRight.classList.add("hidden");
-        } else {
-          arrowRight.classList.remove("hidden");
-          arrowRight.classList.add("flex");
-        }
-      }
-    }
-
-    function updateCarousel(index: number, animate = true) {
-      currentIndex = Math.max(0, Math.min(index, totalSteps - 1));
-      const translateX = -currentIndex * 100;
-
-      if (!animate) {
-        phoneTrack.style.transition = "none";
-        descTrack.style.transition = "none";
-      } else {
-        phoneTrack.style.transition = "transform 0.3s ease-out";
-        descTrack.style.transition = "transform 0.3s ease-out";
-      }
-
-      phoneTrack.style.transform = `translateX(${translateX}%)`;
-      descTrack.style.transform = `translateX(${translateX}%)`;
-
-      // Update dots
-      dots.forEach((dot, i) => {
-        if (i === currentIndex) {
-          dot.classList.remove("w-1.5", "bg-gray-300");
-          dot.classList.add("w-8", "bg-primary");
-        } else {
-          dot.classList.remove("w-8", "bg-primary");
-          dot.classList.add("w-1.5", "bg-gray-300");
+          inner.classList.remove("w-8", "bg-primary");
+          inner.classList.add("w-2", "h-2", "bg-gray-300");
         }
       });
+    }
 
-      // Update arrow visibility
-      updateArrows();
-
-      // Re-enable transitions after update
-      if (!animate) {
-        setTimeout(() => {
-          phoneTrack.style.transition = "transform 0.3s ease-out";
-          descTrack.style.transition = "transform 0.3s ease-out";
-        }, 10);
+    // Scroll to specific slide
+    function scrollToSlide(index: number) {
+      const targetSlide = slides[index];
+      if (targetSlide) {
+        targetSlide.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center"
+        });
       }
     }
 
-    function handleDragStart(e: TouchEvent | MouseEvent) {
-      isDragging = true;
-      isHorizontalSwipe = false;
-      startX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      startY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-      startTranslate = -currentIndex * 100;
-      phoneTrack.style.transition = "none";
-      descTrack.style.transition = "none";
-    }
-
-    function handleDragMove(e: TouchEvent | MouseEvent) {
-      if (!isDragging) return;
-
-      currentX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      currentY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-
-      const diffX = currentX - startX;
-      const diffY = currentY - startY;
-
-      // Determine swipe direction on first significant movement
-      if (!isHorizontalSwipe && (Math.abs(diffX) > 10 || Math.abs(diffY) > 10)) {
-        isHorizontalSwipe = Math.abs(diffX) > Math.abs(diffY);
+    // Intersection Observer to detect current slide
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            const index = parseInt((entry.target as HTMLElement).dataset.index || "0", 10);
+            if (index !== currentIndex) {
+              currentIndex = index;
+              updateDots(currentIndex);
+            }
+          }
+        });
+      },
+      {
+        root: carousel,
+        threshold: 0.5,
+        rootMargin: "0px"
       }
+    );
 
-      // Only handle horizontal swipes, allow vertical scrolling
-      if (!isHorizontalSwipe) {
-        return;
-      }
-
-      // Prevent default only for horizontal swipes
-      e.preventDefault();
-
-      const containerWidth = phoneCarousel.offsetWidth;
-      const percentageMoved = (diffX / containerWidth) * 100;
-      const newTranslate = startTranslate + percentageMoved;
-
-      // Add resistance at edges
-      const maxTranslate = 0;
-      const minTranslate = -(totalSteps - 1) * 100;
-      const constrainedTranslate = Math.max(minTranslate, Math.min(maxTranslate, newTranslate));
-
-      phoneTrack.style.transform = `translateX(${constrainedTranslate}%)`;
-      descTrack.style.transform = `translateX(${constrainedTranslate}%)`;
-    }
-
-    function handleDragEnd() {
-      if (!isDragging) return;
-      isDragging = false;
-
-      // Only process if it was a horizontal swipe
-      if (!isHorizontalSwipe) {
-        return;
-      }
-
-      const diff = currentX - startX;
-      const threshold = 50; // Minimum drag distance to trigger slide
-
-      if (Math.abs(diff) > threshold) {
-        if (diff > 0) {
-          // Dragged right - go to previous
-          updateCarousel(currentIndex - 1);
-        } else {
-          // Dragged left - go to next
-          updateCarousel(currentIndex + 1);
-        }
-      } else {
-        // Snap back to current
-        updateCarousel(currentIndex);
-      }
-    }
-
-    // Touch events for phone carousel
-    phoneCarousel.addEventListener("touchstart", handleDragStart, { passive: true });
-    phoneCarousel.addEventListener("touchmove", handleDragMove, { passive: false });
-    phoneCarousel.addEventListener("touchend", handleDragEnd, { passive: true });
-
-    // Touch events for description carousel
-    descCarousel.addEventListener("touchstart", handleDragStart, { passive: true });
-    descCarousel.addEventListener("touchmove", handleDragMove, { passive: false });
-    descCarousel.addEventListener("touchend", handleDragEnd, { passive: true });
-
-    // Mouse events (for desktop testing)
-    phoneCarousel.addEventListener("mousedown", handleDragStart);
-    descCarousel.addEventListener("mousedown", handleDragStart);
-    document.addEventListener("mousemove", handleDragMove);
-    document.addEventListener("mouseup", handleDragEnd);
+    // Observe all slides
+    slides.forEach((slide) => observer.observe(slide));
 
     // Dot click handlers
     dots.forEach((dot, index) => {
       dot.addEventListener("click", () => {
-        updateCarousel(index);
+        scrollToSlide(index);
       });
     });
 
-    // Arrow click handlers
-    if (arrowLeft) {
-      arrowLeft.addEventListener("click", () => {
-        if (currentIndex > 0) {
-          updateCarousel(currentIndex - 1);
-        }
-      });
-    }
-    if (arrowRight) {
-      arrowRight.addEventListener("click", () => {
-        if (currentIndex < totalSteps - 1) {
-          updateCarousel(currentIndex + 1);
-        }
-      });
-    }
-
     // Initialize
-    updateCarousel(0, false);
+    updateDots(0);
   }
 
   // Initialize on DOM ready
@@ -486,30 +324,36 @@ const steps = [
 </script>
 
 <style>
-  /* Prevent text selection during drag */
-  #hiw-phone-carousel,
-  #hiw-desc-carousel {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-  }
-
-  /* Hardware acceleration */
-  #hiw-phone-track,
-  #hiw-desc-track {
-    will-change: transform;
-  }
-
-  /* Smooth touch scrolling */
-  #hiw-phone-carousel,
-  #hiw-desc-carousel {
+  /* Native scroll carousel */
+  .hiw-carousel {
     -webkit-overflow-scrolling: touch;
-    cursor: grab;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
   }
 
-  #hiw-phone-carousel:active,
-  #hiw-desc-carousel:active {
-    cursor: grabbing;
+  .hiw-carousel::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+  }
+
+  /* Smooth snap points */
+  .hiw-slide {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  /* Gap between slides for peek effect */
+  .hiw-slide + .hiw-slide {
+    margin-left: 16px;
+  }
+
+  /* Dot hover state */
+  .hiw-dot:hover .hiw-dot-inner {
+    background-color: var(--color-primary);
+    opacity: 0.7;
+  }
+
+  .hiw-dot:active .hiw-dot-inner {
+    transform: scale(0.9);
   }
 </style>
