@@ -5,28 +5,28 @@ const steps = [
     title: "Describe the Job",
     description:
       "Tell Estimio about the project using text or photos. Include dimensions, materials, and scope.",
-    image: "/assets/screenshots/Hero Image Middle.png",
+    image: "/assets/screenshots/Hero Image Middle.webp",
   },
   {
     number: 2,
     title: "AI Generates Estimate",
     description:
       "Our AI analyzes your input and creates a detailed, accurate estimate with localized pricing.",
-    image: "/assets/screenshots/Breakdown.png",
+    image: "/assets/screenshots/Breakdown.webp",
   },
   {
     number: 3,
     title: "Adjust your Margins",
     description:
       "Fine-tune labor and material markups to ensure maximum profitability on every job.",
-    image: "/assets/screenshots/Pricing.png",
+    image: "/assets/screenshots/Pricing.webp",
   },
   {
     number: 4,
     title: "Send to Client",
     description:
       "Review, customize if needed, and send professional proposals directly to your clients.",
-    image: "/assets/screenshots/Proposal.png",
+    image: "/assets/screenshots/Proposal.webp",
   },
 ];
 ---
@@ -123,7 +123,7 @@ const steps = [
     <!-- Mobile Carousel Layout - Native Scroll Snap with Peek -->
     <div class="lg:hidden">
       <!-- Phone Image Carousel with Native Scroll -->
-      <div class="relative w-full mb-6">
+      <div class="relative w-full mb-3">
         <!-- Carousel Container with padding for peek effect -->
         <div
           id="hiw-carousel"
@@ -136,12 +136,12 @@ const steps = [
                 data-index={index}
                 style="width: calc(100% - 48px);"
               >
-                <!-- Phone Image -->
-                <div class="w-[260px] sm:w-[280px] mb-6 mx-auto">
+                <!-- Phone Image - compact -->
+                <div class="w-[220px] sm:w-[250px] mb-3 mx-auto">
                   <img
                     src={step.image}
                     alt={`Estimio app - ${step.title}`}
-                    class="w-full rounded-[2rem]"
+                    class="w-full rounded-[1.75rem]"
                     width="360"
                     height="740"
                     loading={index === 0 ? "eager" : "lazy"}
@@ -149,15 +149,17 @@ const steps = [
                   />
                 </div>
 
-                <!-- Description -->
-                <div class="text-center max-w-sm px-4">
-                  <span class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-primary to-primary/60">
-                    0{step.number}
-                  </span>
-                  <h3 class="text-xl font-semibold mb-2 text-text-primary mt-2">
-                    {step.title}
-                  </h3>
-                  <p class="text-base leading-relaxed text-text-secondary">
+                <!-- Description - tighter -->
+                <div class="text-center max-w-xs px-2">
+                  <div class="flex items-center justify-center gap-2 mb-1">
+                    <span class="flex items-center justify-center w-7 h-7 rounded-full bg-primary text-white text-xs font-bold">
+                      {step.number}
+                    </span>
+                    <h3 class="text-lg font-semibold text-text-primary">
+                      {step.title}
+                    </h3>
+                  </div>
+                  <p class="text-sm leading-snug text-text-secondary">
                     {step.description}
                   </p>
                 </div>
@@ -169,8 +171,8 @@ const steps = [
         </div>
       </div>
 
-      <!-- Progress Indicators - Larger tap targets -->
-      <div class="flex justify-center gap-3 mt-4">
+      <!-- Progress Indicators -->
+      <div class="flex justify-center gap-3 mt-2">
         {
           steps.map((step, index) => (
             <button
@@ -178,8 +180,8 @@ const steps = [
               data-dot-index={index}
               class:list={[
                 "hiw-dot",
-                "relative h-11 flex items-center justify-center transition-all duration-200",
-                index === 0 ? "w-11" : "w-11",
+                "relative h-10 flex items-center justify-center transition-all duration-200",
+                "w-10",
               ]}
               aria-label={`Go to step ${step.number}`}
             >

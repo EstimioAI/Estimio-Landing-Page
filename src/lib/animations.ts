@@ -19,6 +19,9 @@ export function initScrollAnimations(): void {
     return;
   }
 
+  // Smaller rootMargin on mobile so elements reveal sooner
+  const isMobile = window.innerWidth < 768;
+
   // Create a single observer for all animated elements
   const observer = new IntersectionObserver(
     (entries) => {
@@ -31,8 +34,8 @@ export function initScrollAnimations(): void {
       });
     },
     {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px',
+      threshold: isMobile ? 0.05 : 0.1,
+      rootMargin: isMobile ? '0px 0px -20px 0px' : '0px 0px -50px 0px',
     }
   );
 

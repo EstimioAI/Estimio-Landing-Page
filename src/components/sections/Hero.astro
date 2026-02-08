@@ -28,13 +28,21 @@ const appStoreUrl =
           <div
             class="fade-in inline-flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-5 py-2 rounded-full bg-white/80 border border-white/60 shadow-sm text-text-primary mb-8 md:mb-10 max-w-full"
           >
-            <span class="text-text-primary font-medium text-xs sm:text-sm whitespace-nowrap"
+            <span
+              class="text-text-primary font-medium text-xs sm:text-sm whitespace-nowrap"
               >Contractors</span
             >
-            <span class="w-1 h-1 rounded-full bg-primary/40 flex-shrink-0"></span>
-            <span class="text-text-primary font-medium text-xs sm:text-sm whitespace-nowrap">Handymen</span>
-            <span class="w-1 h-1 rounded-full bg-primary/40 flex-shrink-0"></span>
-            <span class="text-text-primary font-medium text-xs sm:text-sm whitespace-nowrap">Remodelers</span
+            <span class="w-1 h-1 rounded-full bg-primary/40 flex-shrink-0"
+            ></span>
+            <span
+              class="text-text-primary font-medium text-xs sm:text-sm whitespace-nowrap"
+              >Handymen</span
+            >
+            <span class="w-1 h-1 rounded-full bg-primary/40 flex-shrink-0"
+            ></span>
+            <span
+              class="text-text-primary font-medium text-xs sm:text-sm whitespace-nowrap"
+              >Remodelers</span
             >
           </div>
         </div>
@@ -52,7 +60,8 @@ const appStoreUrl =
         <p
           class="fade-in text-center text-base md:text-lg lg:text-xl text-text-secondary max-w-2xl mx-auto mb-6 md:mb-8 leading-relaxed"
         >
-          Stop losing jobs to contractors who quote faster. Turn descriptions into accurate proposals in seconds.
+          Stop losing bids to contractors who quote faster. Turn descriptions
+          into accurate proposals in seconds.
         </p>
 
         <!-- CTA Section -->
@@ -80,44 +89,33 @@ const appStoreUrl =
               decoding="async"
             />
           </a>
-
-          <!-- Trust indicators -->
-          <div class="flex items-center gap-4 text-sm text-text-secondary">
-            <div class="flex items-center gap-1.5">
-              <svg
-                class="w-4 h-4 text-primary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              <span>7-day free trial</span>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <svg
-                class="w-4 h-4 text-primary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              <span>Cancel anytime</span>
-            </div>
-          </div>
+          <p id="pricing-hint" class="text-sm text-text-tertiary">
+            7-day free trial, then <span id="pricing-amount">$19.99 USD</span>/mo
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Detect Canadian users via timezone or locale and show CAD pricing
+  function setPricing() {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+    const lang = navigator.language || "";
+    const canadianTimezones = [
+      "America/Toronto", "America/Vancouver", "America/Edmonton",
+      "America/Winnipeg", "America/Halifax", "America/St_Johns",
+      "America/Regina", "America/Moncton", "America/Iqaluit",
+    ];
+    const isCanadian = canadianTimezones.some(t => tz.startsWith(t)) ||
+      lang.toLowerCase().includes("ca");
+
+    if (isCanadian) {
+      document.querySelectorAll("#pricing-amount, #pricing-amount-cta").forEach(el => {
+        el.textContent = "$24.99 CAD";
+      });
+    }
+  }
+  setPricing();
+</script>

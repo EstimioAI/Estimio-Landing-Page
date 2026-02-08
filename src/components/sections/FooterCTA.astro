@@ -3,7 +3,7 @@ const appStoreUrl =
   "https://apps.apple.com/ca/app/estimio-ai-estimate-builder/id6756907912";
 ---
 
-<section class="py-20 md:py-28 lg:py-32 bg-white" aria-labelledby="cta-heading">
+<section class="py-12 md:py-16 lg:py-20 bg-white" aria-labelledby="cta-heading">
   <div class="section-container">
     <div
       class="scale-in relative overflow-hidden rounded-3xl lg:rounded-[2rem] cta-glow"
@@ -28,16 +28,16 @@ const appStoreUrl =
 
       <!-- Content -->
       <div
-        class="relative px-8 py-16 md:px-12 md:py-20 lg:px-16 lg:py-24 text-center"
+        class="relative px-8 py-12 md:px-12 md:py-14 lg:px-16 lg:py-16 text-center"
       >
         <!-- Headline -->
         <h2
           id="cta-heading"
           class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold tracking-tight text-white mb-6 leading-tight"
         >
-          Stop Guessing.
+          Your Next Estimate
           <br />
-          <span class="text-white/90">Start Winning.</span>
+          <span class="text-white/90">in 60 Seconds.</span>
         </h2>
 
         <!-- Description -->
@@ -50,7 +50,7 @@ const appStoreUrl =
 
         <!-- CTA Buttons -->
         <div
-          class="flex flex-col sm:flex-row items-center justify-center gap-4"
+          class="flex flex-col items-center justify-center"
         >
           <a
             href={appStoreUrl}
@@ -69,45 +69,11 @@ const appStoreUrl =
               decoding="async"
             />
           </a>
+          <p class="text-sm text-white/60 mt-3">
+            7-day free trial, then <span id="pricing-amount-cta">$19.99 USD</span>/mo
+          </p>
         </div>
 
-        <!-- Trust indicators -->
-        <div
-          class="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-white/60"
-        >
-          <div class="flex items-center gap-2">
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="1.5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            <span>7-day free trial</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="1.5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            <span>Cancel anytime</span>
-          </div>
-        </div>
       </div>
     </div>
   </div>

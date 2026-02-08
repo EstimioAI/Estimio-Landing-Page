@@ -1,10 +1,6 @@
 ---
 const faqs = [
     {
-        question: "Is Estimio free to try?",
-        answer: "Yes! Estimio is free to download and comes with a 7-day full access free trial. After that, it's just $19.99 USD ($24.99 CAD) per month - less than the profit from a single hour of work.",
-    },
-    {
         question: "How accurate are the material prices?",
         answer: "Our AI uses real-time local data to estimate pricing for your specific area. However, you always have full control to adjust or override any price with your own custom rates.",
     },
@@ -42,11 +38,12 @@ const faqSchema = {
         <div class="text-center mb-16">
             <h2
                 id="faq-heading"
-                class="fade-up text-3xl md:text-4xl font-semibold text-text-primary mb-4"
+                class="text-3xl md:text-4xl font-semibold text-text-primary mb-4"
+                data-animate="fade-up"
             >
                 Frequently Asked Questions
             </h2>
-            <p class="fade-up text-lg text-text-secondary">
+            <p class="text-lg text-text-secondary" data-animate="fade-up" data-animate-delay="1">
                 Everything you need to know about Estimio.
             </p>
         </div>
@@ -54,7 +51,7 @@ const faqSchema = {
         <div class="space-y-4">
             {
                 faqs.map((faq, index) => (
-                    <div class="fade-up faq-item bg-white rounded-2xl border border-separator/50 hover:shadow-md hover:border-primary/20 transition-all duration-300 overflow-hidden group">
+                    <div class="faq-item bg-white rounded-2xl border border-separator/50 hover:shadow-md hover:border-primary/20 transition-all duration-300 overflow-hidden group" data-animate="fade-up" data-animate-delay={index + 1}>
                         <button
                             type="button"
                             class="faq-btn w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none"
