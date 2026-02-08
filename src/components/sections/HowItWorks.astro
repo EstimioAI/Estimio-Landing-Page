@@ -137,7 +137,7 @@ const steps = [
                 style="width: calc(100% - 48px);"
               >
                 <!-- Phone Image - compact -->
-                <div class="w-[220px] sm:w-[250px] mb-3 mx-auto">
+                <div class="w-[280px] sm:w-[320px] mb-3 mx-auto">
                   <img
                     src={step.image}
                     alt={`Estimio app - ${step.title}`}
@@ -236,6 +236,13 @@ const steps = [
     }
 
     stepCards.forEach((card) => {
+      // Change on hover
+      card.addEventListener("mouseenter", () => {
+        const stepNumber = parseInt(card.dataset.step || "1", 10);
+        setActiveStep(stepNumber);
+      });
+
+      // Keep click for accessibility
       card.addEventListener("click", () => {
         const stepNumber = parseInt(card.dataset.step || "1", 10);
         setActiveStep(stepNumber);
@@ -357,5 +364,12 @@ const steps = [
 
   .hiw-dot:active .hiw-dot-inner {
     transform: scale(0.9);
+  }
+
+  /* Ensure consistent image sizing */
+  .hiw-phone-image-desktop,
+  .hiw-slide img {
+    object-fit: contain;
+    aspect-ratio: 360 / 740;
   }
 </style>

@@ -43,16 +43,16 @@ const appStoreUrl =
 <script>
   function initStickyMobileCTA() {
     const stickyCTA = document.getElementById("sticky-mobile-cta");
-    const heroSection = document.querySelector("section");
+    const howItWorksSection = document.getElementById("how-it-works");
 
-    if (!stickyCTA || !heroSection) return;
+    if (!stickyCTA || !howItWorksSection) return;
 
     let isVisible = false;
     let ticking = false;
 
     function updateStickyVisibility() {
-      const heroBottom = heroSection.getBoundingClientRect().bottom;
-      const shouldShow = heroBottom < 100; // Show when hero is mostly scrolled past
+      const howItWorksBottom = howItWorksSection.getBoundingClientRect().bottom;
+      const shouldShow = howItWorksBottom < 100; // Show when How It Works section is mostly scrolled past
 
       if (shouldShow !== isVisible) {
         isVisible = shouldShow;
